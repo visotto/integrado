@@ -7,7 +7,7 @@ Assento::Assento(int _idAssento, bool _disponibilidade, char _idFileira)
   idFileira = _idFileira;
 }
 
-Assento::Assento(const Assento &a)
+Assento::Assento(const Assento &a) // construtor de copia FUTURO
 {
   idAssento = a.idAssento;
   disponibilidade = a.disponibilidade;
@@ -16,5 +16,27 @@ Assento::Assento(const Assento &a)
 
 bool Assento::verificaDisponibilidade()
 {
-  return (disponibilidade ? true : false);
+  return disponibilidade;
+  // return (disponibilidade ? true : false);
+  // pois antes era int
+}
+
+void Assento::setIdAssento(int _idAssento)
+{
+  idAssento = _idAssento;
+}
+
+void Assento::setIdFileira(char _idFileira);
+{
+  idFileira = _idFileira;
+}
+
+int Assento::getIdAssento();
+{
+  return idAssento;
+}
+
+char Assento::getIdFileira();
+{
+  return idFileira;
 }

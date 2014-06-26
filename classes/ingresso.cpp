@@ -7,7 +7,7 @@ Ingresso(Date _dtIngresso, double _valor, Tipo _tipo)
   tipo = _tipo;
 }
 
-Ingresso(const Ingresso &i)
+Ingresso(const Ingresso &i) // construtor de copia FUTURO
 {
   dtIngresso = i.dtIngresso;
   valor = i.valor;

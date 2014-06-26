@@ -13,7 +13,7 @@ class Ingresso{
   
   public:
     Ingresso(Date _dtIngresso, double _valor, Tipo _tipo);
-    Ingresso(const Ingresso &i);
+    Ingresso(const Ingresso &i); // construtor de copia FUTURO
 
     Date getDtingresso();
     void setDtingresso(Date dtIngresso);
