@@ -1,6 +1,6 @@
 #include "../headers/Assento.h"
 
-Assento::Assento(int _idAssento, int _disponibilidade, char _idFileira)
+Assento::Assento(int _idAssento, bool _disponibilidade, char _idFileira)
 {
   idAssento = _idAssento;
   disponibilidade = _disponibilidade;

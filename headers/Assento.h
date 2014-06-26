@@ -7,14 +7,13 @@ class Assento
 {
   private:
     int idAssento;
-    int disponibilidade;
+    bool disponibilidade;
     char idFileira;	
 
   public:
-    Assento(int _idAssento, int _disponibilidade, char _idFileira);
+    Assento(int _idAssento, bool _disponibilidade, char _idFileira);
     Assento(const Assento &a);
     bool verificaDisponibilidade();
-
 };
 
 #endif // ASSENTO_H

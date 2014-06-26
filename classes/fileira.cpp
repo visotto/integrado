@@ -12,7 +12,7 @@ Fileira::Fileira(const Fileira &f)
 
 bool Fileira::verificaDisponibilidade()
 {
-  Assento i = assentos;
+  Assento* i = assentos; // i aponta para vetor de assentos, posicao 0
 
   while (i != NULL) // percorra todos assentos e veja se existe ao menos um livre
   {
