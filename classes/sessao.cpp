@@ -1,6 +1,6 @@
 #include "../headers/Sessao.h"
 
-Sessao(array _horario, int _encerrada, int _numVendido, string _filme)
+Sessao(array _horario, bool _encerrada, int _numVendido, string _filme)
 {
   horario = _horario;
   encerrada = _encerrada;
@@ -17,7 +17,7 @@ Sessao(const Sessao &s)
 
 }
 
-void Sessao::setStatus(int encerrada)
+void Sessao::setStatus(bool encerrada)
 {
   Sessao::encerrada = encerrada;
 }

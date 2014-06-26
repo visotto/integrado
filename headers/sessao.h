@@ -9,16 +9,16 @@ class Sessao
 {
   private:
     array horario;
-    int encerrada;
+    bool encerrada;
     int numVendido;
     string filme;
     Sala *sala; 
 
   public:
-    Sessao(array _horario, int _encerrada, int _numVendido, string _filme);
+    Sessao(array _horario, bool _encerrada, int _numVendido, string _filme);
     Sessao(const Sessao &s);
 
-    void setStatus(int encerrada);
+    void setStatus(bool encerrada);
     int getStatus();
 
     void setHorario(array horario);
