@@ -1,20 +1,11 @@
-# Parametros 
 CC = g++
-CFLAGS = 
-LIBS = 
 EXE = teste
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:.cpp=.o)
-INC = $(wildcard *.h)
 
-# Comandos
-%.o: %.cpp 
-	$(CC) -c $(CFLAGS) $< -o $@ 
+all: $(EXE) clean
 
-all:teste clean
-
-teste:$(OBJ)
-	$(CC) -o $(EXE) $^ $(CFLAGS) $(LIBS)
+$(EXE):
+	$(CC) classes/*.cpp -c
+	$(CC) main.cpp *.o -o $(EXE)
 
 clean:
 	rm -f *.o
