@@ -18,7 +18,12 @@ bool Assento::verificaDisponibilidade()
 {
   return disponibilidade;
   // return (disponibilidade ? true : false);
-  // pois antes era int
+  // pois antes o tipo de retorno era int
+}
+
+void setDisponibilidade(bool _disponibilidade)
+{
+  disponibilidade = _disponibilidade;
 }
 
 void Assento::setIdAssento(int _idAssento)
@@ -29,6 +34,11 @@ void Assento::setIdAssento(int _idAssento)
 void Assento::setIdFileira(char _idFileira);
 {
   idFileira = _idFileira;
+}
+
+bool getDisponibilidade()
+{
+  return disponibilidade;
 }
 
 int Assento::getIdAssento();

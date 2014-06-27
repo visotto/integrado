@@ -2,27 +2,35 @@
 #define SESSAO_H
 
 #include <iostream>
+#include <ctime.h>
   using std::string;
-  using std::array;
+
+typedef struct _horario
+{
+  int horas;
+  int minutos;
+} Horario;
 
 class Sessao
 {
   private:
-    array horario;
+    static const int  maxHorarios;
+    Horario *horarios;
+    int qtdHorarios;
     bool encerrada;
     int numVendido;
-    string filme;
+    Filme *filme;
     Sala *sala; 
 
   public:
-    Sessao(array _horario, bool _encerrada, int _numVendido, string _filme);
+    Sessao(bool _encerrada, int _numVendido, string _filme);
     Sessao(const Sessao &s);
 
     void setStatus(bool encerrada);
     int getStatus();
 
     void setHorario(array horario);
-    array getHorario();
+    Horario* getHorarios(); // retorna o vetor de horarios
 
     void setNumVendido(int numVendido);
     int getDisponivel();

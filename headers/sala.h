@@ -14,7 +14,7 @@ class Sala
     Fileira *fileiras; // vetor de fileiras
 
   public:
-    Sala(int _numSala, int _capacidade, Situacao _situacao);
+    Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdFileiras, int qtdAssentos);
     Sala(const Sala &s);
 
     int getNumSala();
