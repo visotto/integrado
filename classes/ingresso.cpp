@@ -1,4 +1,4 @@
-#include "../headers/Ingresso.h"
+#include "../headers/ingresso.h"
 
 Ingresso(Date _dtIngresso, double _valor, Tipo _tipo)
 {
