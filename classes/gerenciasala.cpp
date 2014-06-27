@@ -10,8 +10,7 @@ GerenciaSala::GerenciaSala()
 
 bool GerenciaSala::criarSala()
 {
-	int capacidade, qtdAssentos;
-	Situacao situacao;
+	int capacidade, qtdAssentos, situacao;
 
 	// trocar o IF ELSE externo por tratamento de excecao
 	if (qtdSalas >= 0 && qtdSalas < MAX_SALAS)
@@ -20,13 +19,15 @@ bool GerenciaSala::criarSala()
 		cin >> capacidade;
 		cout << "Digite a quantidade de assentos em cada fileira: ";
 		cin >> qtdAssentos;
-		cout << "Digite a situacao da sala (disponivel, manuEquipamento, reforma, manuGeral): ";
+		cout << "Digite a situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
 		cin >> situacao;
+
+		Situacao s = static_cast <Situacao> (situacao);
 
 		try
 		{
-			salas[qtdSalas] = new Sala(qtdSalas+1, capacidade, situacao, qtdAssentos);
-			cout << "Sala criada com sucesso!" << endl;
+			salas[qtdSalas] = new Sala(qtdSalas+1, capacidade, s, qtdAssentos);
+			cout << "\nSala criada com sucesso!\n" << endl;
 			qtdSalas++;
 		}
 
@@ -47,12 +48,12 @@ bool GerenciaSala::removerSala()
 
 }
 
-bool GerenciaSala::buscarSala()
+void GerenciaSala::buscarSala()
 {
 
 }
 
-bool GerenciaSala::editarSala()
+void GerenciaSala::editarSala()
 {
 
 }

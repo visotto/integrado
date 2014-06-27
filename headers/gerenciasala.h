@@ -7,7 +7,7 @@
 
 #define MAX_SALAS 100
 
-class GerenciaSessao{
+class GerenciaSala{
   private:
 	int qtdSalas;
 	Sala *salas[MAX_SALAS];

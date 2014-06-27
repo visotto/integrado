@@ -6,6 +6,14 @@
 
 enum Situacao {disponivel, manuEquipamento, reforma, manuGeral};
 
+std::istream& operator>>( std::istream& is, Situacao& s )
+{
+    int tmp ;
+    if ( is >> tmp )
+        s = static_cast<Situacao>( tmp ) ;
+    return is ;
+}
+
 class Sala
 {
   private: 
