@@ -2,19 +2,17 @@
 
 Sessao::maxHorarios = 48;
 
-Sessao(bool _encerrada, int _numVendido, string _filme)
+Sessao(bool _encerrada, int _numVendido)
 {
   horarios = new Horario[maxHorarios];
   encerrada = _encerrada;
   numVendido = _numVendido;
-  filme = _filme;
 }
 
 Sessao(const Sessao &s)
 {
   encerrada = s.encerrada;
   numVendido = s.numVendido;
-  filme = s.filme;
 }
 
 void Sessao::setStatus(bool encerrada)
@@ -28,13 +26,28 @@ int Sessao::getStatus()
 }
 
 // posicionador usado para inserir um horario na primeira posicao
-void Sessao::setHorario(array horario)
-{
-  if (qtdHorarios < maxHorarios)
+bool Sessao::setHorario(Horario* horario, Horario anterior, Horario atual)
+{ 
+  // posicionador para posicao valida, achei o anterior ou ele nao existe
+  for(int i = 0; i < qtdHorarios && anterior != horario[i]; i++)
+  
+  if (i != qtdHorarios)
   {
-    Sessao::horarios[qtdHorarios] = horario;
-    qtdHorarios++;
+    horario[i] = atual;
+
+    return 1;
   }
+
+  return 0;
+}
+
+void Sessao::setHorario()
+{
+    if (qtdHorarios < maxHorarios)
+    {
+      Sessao::horarios[qtdHorarios] = horario;
+      qtdHorarios++;
+    }
 }
 
 Horario* Sessao::getHorarios()
@@ -48,6 +61,7 @@ Horario* Sessao::getHorarios()
   return retorno;
 }
 
+// altera o numero de ingressos vendidos
 void Sessao::setNumVendido(int numVendido)
 {
   Sessao::numVendido = numVendido;
@@ -58,14 +72,13 @@ int Sessao::getNumVendido()
   return numVendido;
 }
 
-void Sessao::setFilme(string nomeFilme)
+
+void Sessao::setFilme(Filme f, string _tituloFilme, int _fxetaria, char idioma)
 {
-  filme = nomeFilme;
+  Filme(f, tituloFilme, fxetaria ldn); // construtor de copia ou construtor normal sobrecarregado ? FUTURO
 }
 
-string Sessao::getFilme()
+Filme Sessao::getFilme(const Filme &f) // usa default e lista de inicializadores para retorna as informacoes relativas ao filme 
 {
   return filme;
 }
-
-
