@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../headers/fileira.h"
 
-using std::string
+using std::string;
 
 enum Situacao {disponivel, manuEquipamento, reforma, manuGeral};
 

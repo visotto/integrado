@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fstream>
 #include "../headers/gerenciasala.h"
 
 using namespace std;
@@ -31,6 +33,9 @@ void GerenciaSala::criarSala()
 
 		cout << "\nSala criada com sucesso!\n" << endl;
 		qtdSalas++;
+
+		// Chama funcao para escrever nova sala no arquivo salas.data
+		escreverSala();
 	}
 
 	else
@@ -52,6 +57,10 @@ void GerenciaSala::removerSala()
 		*salas[id-1] = *salas[qtdSalas]; // movemos a ultima sala para o lugar da sala que foi removida
 		salas[qtdSalas] = NULL; // e fazemos a ultima posicao apontar para null para evitar duplicacao
 		cout << "\nSala removida com sucesso!\n" << endl;
+		
+		// Chama funcao para reescrever as salas atuais no arquivo salas.data
+		reescreverSala();
+	
 	}
 
 	else
@@ -125,8 +134,48 @@ void GerenciaSala::editarSala()
 		salas[id-1]->setSituacao(s);
 
 		cout << "Situacao atualizada com sucesso" << endl;
+	
+		// Chama funcao para reescrever as salas atuais no arquivo salas.data
+		reescreverSala();
+	
 	}
 
 	else
 		throw "\nNao existe uma sala com este id!\n";
+}
+
+void GerenciaSala::escreverSala(){
+
+	ofstream escreve; // Variavel para escrever no arquivo salas.data
+
+	escreve.open("resources/salas.data", ios_base::app); // Comeca a escrever no final do arquivo
+	
+	// Escreve no arquivo salas.data
+		escreve << "Numero da sala: " << salas[qtdSalas-1]->getNumSala() << "\n";
+		escreve << "Capacidade da Sala: " << salas[qtdSalas-1]->getCapacidade() << "\n";
+		escreve << "Quantidade de assentos em cada fileira: " << salas[qtdSalas-1]->getQtdAssentos() << "\n";
+		escreve << "Situacao da sala: " << salas[qtdSalas-1]->getSituacao() << "\n";
+		escreve << "------------------------------------------------------------------------------------ \n";
+
+	escreve.close();	
+}
+
+void GerenciaSala::reescreverSala(){
+
+	ofstream escreve; // Variavel para escrever no arquivo salas.data
+	int i;
+
+	escreve.open("resources/salas.data"); // Comeca a escrever no final do arquivo
+	
+	for(i = 0; i < qtdSalas; i++){
+		
+		// Escreve no arquivo salas.data
+		escreve << "Numero da sala: " << salas[i]->getNumSala() << "\n";
+		escreve << "Capacidade da Sala: " << salas[i]->getCapacidade() << "\n";
+		escreve << "Quantidade de assentos em cada fileira: " << salas[i]->getQtdAssentos() << "\n";
+		escreve << "Situacao da sala: " << salas[i]->getSituacao() << "\n";
+		escreve << "------------------------------------------------------------------------------------ \n";
+
+	}
+	escreve.close();	
 }
