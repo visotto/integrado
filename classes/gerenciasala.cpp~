@@ -23,14 +23,22 @@ bool GerenciaSala::criarSala()
 		cout << "Digite a situacao da sala (disponivel, manuEquipamento, reforma, manuGeral): ";
 		cin >> situacao;
 
-		if (salas[qtdSalas] = new Sala(capacidade, situacao, qtdAssentos)) cout << "sala criada com sucesso" << endl;
-		else cout << "erro" << endl;
-		qtdSalas++;
+		try
+		{
+			salas[qtdSalas] = new Sala(qtdSalas+1, capacidade, situacao, qtdAssentos);
+			cout << "Sala criada com sucesso!" << endl;
+			qtdSalas++;
+		}
+
+		catch (...)
+		{
+			cout << "Falha na alocacao!" << endl;
+		}
 	}
 
 	else
 	{
-		cout << "Nao ha espaco" << endl;
+		cout << "Nao ha espaco para criar novas salas!" << endl;
 	}
 }
 

@@ -17,8 +17,8 @@ class GerenciaSessao{
 	/* ------ CRUD ------- */            
     bool criarSala(); // retorna true se criou com sucesso
 	bool removerSala(); // retorna true se removeu com sucesso
-	void buscaSala();  
-	void editaSala();  
+	void buscarSala();  
+	void editarSala();  
 	/* ------------------- */
 };
 
