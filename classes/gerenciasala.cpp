@@ -1,15 +1,96 @@
 #include <iostream>
 #include <fstream>
+
+
 #include "../headers/gerenciasala.h"
 
 using namespace std;
 
 GerenciaSala::GerenciaSala()
-{
-	qtdSalas = 0;
-
-	for (int i = 0; i < MAX_SALAS; i++)
+{	
+	
+	int i, j;
+	for (i = 0; i < MAX_SALAS; i++)
 		salas[i] = NULL;
+
+	// Variavel para leitura do arquivo
+	ifstream leitura; 
+
+	// Carrega o arquivo
+	leitura.open("resources/salas.data");	
+
+	// Caso ocorra
+	if(!leitura.is_open( )) 
+	{
+		leitura.clear( ); //reseta o objeto leitura, para limpar memória do sistema
+		cout << "Não foi possível abrir arquivo!\n";
+		return;
+		
+	}
+	// Variavel para leitura de cada linha do arquivo
+	char leituraLinha[100];
+
+	// Variaveis que sera passada para o construtor de cada arquivo
+	int k, _capacidade, _qtdAssentos, _numSala;
+	string _situacao;
+	Situacao s;	
+
+	// Le do arquivo a quantidade de salas armazenadas
+	leitura.getline(leituraLinha,100);
+	qtdSalas = leituraLinha[0];
+
+	k = 0;
+	// Enquanto tiver salas armazenadas no arquivo
+	while(k < qtdSalas){
+		// Le do arquivo o numero da sala
+		leitura.getline(leituraLinha,100);
+		_numSala = leituraLinha[0];
+
+		// Le do arquivo a capacidade da sala
+		leitura.getline(leituraLinha,100);
+		_capacidade = leituraLinha[0];
+
+		// Le do arquivo a quantidade de assentos
+		leitura.getline(leituraLinha,100);
+		_qtdAssentos = leituraLinha[0];
+
+		// Le do arquivo a situacao da sala
+		leitura.getline(leituraLinha,100);
+		_situacao = leituraLinha;
+
+		// Converte a string lida para tipo situacao
+		if(_situacao == "disponivel")
+			s = disponivel;
+			
+		if(_situacao == "manuEquipamento")
+			s = manuEquipamento;
+		
+		if(_situacao == "reforma")
+			s = reforma;
+		
+		if(_situacao == "manuGeral")
+			s = manuGeral;
+	
+
+		// Aloca a classe armazenada no arquivo
+		salas[k] = new Sala(_numSala, _capacidade, s, _qtdAssentos);
+
+		// Le os status dos assentos
+		for(i = 0; i < _capacidade; i++){
+			leitura.getline(leituraLinha,100);
+			
+			for(j = 0; j < _qtdAssentos; j++){
+				if(leituraLinha[j] == 'S')
+					salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(true);
+				else
+					salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(false);
+			}
+		}
+
+		k++;
+	}
+	
+	
 }
 
 void GerenciaSala::criarSala()
@@ -42,6 +123,7 @@ void GerenciaSala::criarSala()
 		cout << "\nSala criada com sucesso!\n" << endl;
 		qtdSalas++;
 
+
 		// Chama funcao para escrever nova sala no arquivo salas.data
 		escreverSala();
 	}
@@ -68,7 +150,7 @@ void GerenciaSala::removerSala()
 			cout << "\nSala removida com sucesso!\n" << endl;
 			
 			// Chama funcao para reescrever as salas atuais no arquivo salas.data
-			reescreverSala();
+			escreverSala();
 			return;
 		}
 
@@ -146,7 +228,7 @@ void GerenciaSala::editarSala()
 			cout << "Situacao atualizada com sucesso" << endl;
 		
 			// Chama funcao para reescrever as salas atuais no arquivo salas.data
-			reescreverSala();
+			escreverSala();
 			return;
 		}
 
@@ -156,34 +238,28 @@ void GerenciaSala::editarSala()
 void GerenciaSala::escreverSala(){
 
 	ofstream escreve; // Variavel para escrever no arquivo salas.data
-
-	escreve.open("resources/salas.data", ios_base::app); // Comeca a escrever no final do arquivo
-	
-	// Escreve no arquivo salas.data
-		escreve << "Numero da sala: " << salas[qtdSalas-1]->getNumSala() << "\n";
-		escreve << "Capacidade da Sala: " << salas[qtdSalas-1]->getCapacidade() << "\n";
-		escreve << "Quantidade de assentos em cada fileira: " << salas[qtdSalas-1]->getQtdAssentos() << "\n";
-		escreve << "Situacao da sala: " << salas[qtdSalas-1]->getSituacao() << "\n";
-		escreve << "------------------------------------------------------------------------------------ \n";
-
-	escreve.close();	
-}
-
-void GerenciaSala::reescreverSala(){
-
-	ofstream escreve; // Variavel para escrever no arquivo salas.data
 	int i;
 
-	escreve.open("resources/salas.data"); // Comeca a escrever no final do arquivo
+	escreve.open("resources/salas.data"); // Comeca a escrever no inicio do arquivo
 	
-	for(i = 0; i < qtdSalas; i++){
+	char aux; // Variavel para gravar o valor de qtdSalas no arquivo para leituras futuras
+	
+	escreve << (char)qtdSalas << "\n";
+	for(i = 0; i < qtdSalas && salas[i] != NULL; i++){
 		
 		// Escreve no arquivo salas.data
-		escreve << "Numero da sala: " << salas[i]->getNumSala() << "\n";
-		escreve << "Capacidade da Sala: " << salas[i]->getCapacidade() << "\n";
-		escreve << "Quantidade de assentos em cada fileira: " << salas[i]->getQtdAssentos() << "\n";
-		escreve << "Situacao da sala: " << salas[i]->getSituacao() << "\n";
-		escreve << "------------------------------------------------------------------------------------ \n";
+		escreve << (char)salas[i]->getNumSala() << "\n";
+		escreve << (char)salas[i]->getCapacidade() << "\n";
+		escreve << (char)salas[i]->getQtdAssentos() << "\n";
+		escreve << salas[i]->getSituacao() << "\n";
+		
+		for (int j = 0; j < salas[i]->getCapacidade(); j++){	
+			for (int k = 0; k < salas[i]->getQtdAssentos(); k++)
+				// assento disponivel? printe S, caso contrario printe N
+				salas[i]->getFileira(j)->getAssento(k)->getDisponibilidade() ? escreve << "S" : escreve << "N";
+		escreve << "\n";
+		}
+
 
 	}
 	escreve.close();	

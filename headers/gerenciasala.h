@@ -10,8 +10,7 @@ class GerenciaSala{
   private:
 	int qtdSalas;
 	Sala *salas[MAX_SALAS];
-  	void escreverSala(); // funcao para escrever no arquivo salas.data a nova sala
-	void reescreverSala(); // funcao para reescrever as atuais sala no arquivo salas.data 
+  	void escreverSala(); // funcao para escrever no arquivo salas.data as salasa cadastradas
 	
 
   public:
