@@ -14,10 +14,18 @@ GerenciaSala::GerenciaSala()
 
 void GerenciaSala::criarSala()
 {
-	int capacidade, qtdAssentos, situacao;
+	int numSala, capacidade, qtdAssentos, situacao;
+	int i;
 
 	if (qtdSalas < MAX_SALAS)
 	{
+		cout << "Digite o numero da sala: ";
+		cin >> numSala;
+
+		for (i = 0; i < qtdSalas; i++)
+			if (numSala == salas[i]->getNumSala())
+				throw "\nJa existe uma sala com este numero\n";
+
 		cout << "Digite a capacidade da sala (quantidade de fileiras na sala): ";
 		cin >> capacidade;
 		cout << "Digite a quantidade de assentos em cada fileira: ";
@@ -29,7 +37,7 @@ void GerenciaSala::criarSala()
 			throw "\nSituacao da sala invalida!\n";
 
 		Situacao s = static_cast <Situacao> (situacao);
-		salas[qtdSalas] = new Sala(qtdSalas+1, capacidade, s, qtdAssentos);
+		salas[qtdSalas] = new Sala(numSala, capacidade, s, qtdAssentos);
 
 		cout << "\nSala criada com sucesso!\n" << endl;
 		qtdSalas++;
@@ -47,24 +55,24 @@ void GerenciaSala::removerSala()
 	if (!qtdSalas)
 		throw "\nNao existem salas cadastradas!\n";
 
-	int id;
+	int id, i;
 	cout << "Digite o id da sala que deseja remover: ";
 	cin >> id;
 
-	if (id > 0 && id <= MAX_SALAS && salas[id-1] != NULL)
-	{
-		qtdSalas--;
-		*salas[id-1] = *salas[qtdSalas]; // movemos a ultima sala para o lugar da sala que foi removida
-		salas[qtdSalas] = NULL; // e fazemos a ultima posicao apontar para null para evitar duplicacao
-		cout << "\nSala removida com sucesso!\n" << endl;
-		
-		// Chama funcao para reescrever as salas atuais no arquivo salas.data
-		reescreverSala();
-	
-	}
+	for (i = 0; i < qtdSalas; i++)
+		if (salas[i]->getNumSala() == id)
+		{
+			qtdSalas--;
+			*salas[i] = *salas[qtdSalas]; // movemos a ultima sala para o lugar da sala que foi removida
+			salas[qtdSalas] = NULL; // e fazemos a ultima posicao apontar para null para evitar duplicacao
+			cout << "\nSala removida com sucesso!\n" << endl;
+			
+			// Chama funcao para reescrever as salas atuais no arquivo salas.data
+			reescreverSala();
+			return;
+		}
 
-	else
-		throw "\nNao existe uma sala com este id!\n";
+	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao entrou no if e nao fez a remocao
 }
 
 void GerenciaSala::buscarSala()
@@ -72,47 +80,48 @@ void GerenciaSala::buscarSala()
 	if (!qtdSalas)
 		throw "\nNao existem salas cadastradas!\n";
 
-	int id;
+	int id, i;
 	cout << "Digite o id da sala que deseja buscar: ";
 	cin >> id;
 
-	if (id > 0 && id <= qtdSalas)
-	{
-		cout << "Sala " << id << ": " << endl;
-		cout << "Capacidade da sala (quantidade de fileiras na sala): " << salas[id-1]->getCapacidade() << endl;
-		cout << "Quantidade de assentos em cada fileira: " << salas[id-1]->getQtdAssentos() << endl;
-		cout << "Situacao da sala: " << salas[id-1]->getSituacao() << endl;
-
-		cout << "Relacao de assentos livres e ocupados:" << endl;
-		cout << "     ";
-
-		for (int i = 0; i < salas[id-1]->getQtdAssentos(); i++)
+	for (i = 0; i < qtdSalas; i++)
+		if (salas[i]->getNumSala() == id)
 		{
-			cout << i+1;
+			cout << "Sala " << id << ": " << endl;
+			cout << "Capacidade da sala (quantidade de fileiras na sala): " << salas[i]->getCapacidade() << endl;
+			cout << "Quantidade de assentos em cada fileira: " << salas[i]->getQtdAssentos() << endl;
+			cout << "Situacao da sala: " << salas[i]->getSituacao() << endl;
 
-			// se i for 10 ou mais, alinhamos o texto com 1 espaco a menos
-			i >= 9 ? cout << "  " : cout << "   ";
-		}
+			cout << "Relacao de assentos livres e ocupados:" << endl;
+			cout << "     ";
 
-		cout << endl << endl;
-
-		for (int i = 0; i < salas[id-1]->getCapacidade(); i++)
-		{
-			cout << salas[id-1]->getFileira(i)->getIdFileira() << "    ";
-
-			for (int j = 0; j < salas[id-1]->getQtdAssentos(); j++)
+			for (int j = 0; j < salas[i]->getQtdAssentos(); j++)
 			{
-				// assento disponivel? printe S, caso contrario printe N
-				salas[id-1]->getFileira(i)->getAssento(j)->getDisponibilidade() ? cout << "S   " : cout << "N   ";
+				cout << j+1;
+
+				// se j for 10 ou mais, alinhamos o texto com 1 espaco a menos
+				j >= 9 ? cout << "  " : cout << "   ";
 			}
 
-			cout << endl;
-		}
-		cout << endl;
-	}
+			cout << endl << endl;
 
-	else
-		throw "\nNao existe uma sala com este id!\n";
+			for (int j = 0; j < salas[i]->getCapacidade(); j++)
+			{
+				cout << salas[i]->getFileira(j)->getIdFileira() << "    ";
+
+				for (int k = 0; k < salas[i]->getQtdAssentos(); k++)
+				{
+					// assento disponivel? printe S, caso contrario printe N
+					salas[i]->getFileira(j)->getAssento(k)->getDisponibilidade() ? cout << "S   " : cout << "N   ";
+				}
+
+				cout << endl;
+			}
+			cout << endl;
+			return;
+		}
+
+	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
 }
 
 void GerenciaSala::editarSala()
@@ -120,28 +129,28 @@ void GerenciaSala::editarSala()
 	if (!qtdSalas)
 		throw "\nNao existem salas cadastradas!\n";
 
-	int id, _situacao;
+	int id, _situacao, i;
 		
 	cout << "Digite o id da sala que deseja atualizar: ";
 	cin >> id;
 
-	if (id > 0 && id <= qtdSalas)
-	{
-		cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
-		cin >> _situacao;
+	for (i = 0; i < qtdSalas; i++)
+		if (salas[i]->getNumSala() == id)
+		{
+			cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
+			cin >> _situacao;
 
-		Situacao s = static_cast <Situacao> (_situacao);
-		salas[id-1]->setSituacao(s);
+			Situacao s = static_cast <Situacao> (_situacao);
+			salas[i]->setSituacao(s);
 
-		cout << "Situacao atualizada com sucesso" << endl;
-	
-		// Chama funcao para reescrever as salas atuais no arquivo salas.data
-		reescreverSala();
-	
-	}
+			cout << "Situacao atualizada com sucesso" << endl;
+		
+			// Chama funcao para reescrever as salas atuais no arquivo salas.data
+			reescreverSala();
+			return;
+		}
 
-	else
-		throw "\nNao existe uma sala com este id!\n";
+	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
 }
 
 void GerenciaSala::escreverSala(){
