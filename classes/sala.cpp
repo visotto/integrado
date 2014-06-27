@@ -1,36 +1,39 @@
-#include "../headers/Sala.h"
-
-Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdFileiras, int qtdAssentos)
+#include "../headers/sala.h"
+//using namespace std;
+Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdAssentos)
 {
   numSala = _numSala;
   capacidade = _capacidade;
   situacao = _situacao;
 
-  fileiras = new Fileira[qtdFileiras];
+//	cout << "Construindo uma sala" << endl;
 
-  // inicializa todas as fileiras e as suas cadeiras
-  // inicializa cada fileira
-  for (int i = 0; i < qtdFileiras; i++)
-  {
-     fileiras[i]->setIdFileira(i+1); // de 1 ateh a qtd de fileira
+	fileiras = new Fileira*[capacidade];
+	for (int i = 0; i < capacidade; i++)
+	{
+		fileiras[i] = new Fileira('A'+i, qtdAssentos);
 
-     fileiras[i]->assentos = new Assento[qtdAssentos]; // alocacao dinamica para um vetor de assentos
-    // o user que define qnts assentos tem naquela fileira
-
-    // inicializa cada assento da fileira i
-    for (int j = 0; i < qtdAssentos; i++)
-    {
-      fileiras[i]->assentos[j]->setIdAssento(i+1); // de 1 ateh a qtd de assentos
-      fileiras[i]->assentos[j]->setIdFileira(idFileira); // inicializa todos os assentos de uma fileira com o id da fileira
-    }
-  }
+/*		cout << "ID Da fileira " << i << " : " << fileiras[i]->getIdFileira() << endl;
+		cout << "Assentos desta fileira:" << endl;
+		for (int j = 0; j < qtdAssentos; j++)
+			cout << fileiras[i]->getAssento(j)->getIdFileira() << fileiras[i]->getAssento(j)->getIdAssento() << endl;
+*/	}
 }
 
-Sala(const Sala &s)
+Sala::Sala(const Sala &s)
 {
   numSala = s.numSala;
   capacidade = s.capacidade;
   situacao = s.situacao;
+}
+
+Sala::~Sala()
+{
+	for (int i = 0; i < capacidade; i++)
+		if (fileiras[i] != NULL)
+			delete fileiras[i];
+
+  delete [] fileiras;
 }
 
 int Sala::getNumSala()

@@ -1,17 +1,16 @@
-#include "../headers/Fileira.h"
+#include "../headers/fileira.h"
 
-Fileira::Fileira(char _idFileira, int qtdAssentos)
+Fileira::Fileira(char _idFileira, int _qtdAssentos)
 {
   idFileira = _idFileira;
-  assentos = new Assento[qtdAssentos]; // alocacao dinamica para um vetor de assentos
-  // o user que define qnts assentos tem naquela fileira
+	qtdAssentos = _qtdAssentos;
 
-  // inicializa cada assento da fileira
+  assentos = new Assento*[qtdAssentos]; // alocacao dinamica para um vetor de ponteiros para assentos
+																			  // o user define qnts assentos tem naquela fileira
+
+  // aloca cada assento da fileira
   for (int i = 0; i < qtdAssentos; i++)
-  {
-    assentos[i]->setIdAssento(i+1); // de 1 ateh a qtd de assentos
-    assentos[i]->setIdFileira(_idFileira); // inicializa todos os assentos de uma fileira com o id da fileira
-  }
+		assentos[i] = new Assento(i+1, true, _idFileira);
 }
 
 Fileira::Fileira(const Fileira &f)
@@ -21,20 +20,37 @@ Fileira::Fileira(const Fileira &f)
 
 Fileira::~Fileira()
 {
+	for (int i = 0; i < qtdAssentos; i++)
+		if (assentos[i] != NULL)
+			delete assentos[i];
+
   delete [] assentos;
 }
 
 bool Fileira::verificaDisponibilidade()
 {
-  Assento* i = assentos; // i aponta para vetor de assentos, posicao 0
+  Assento** i = assentos; // i aponta para vetor de assentos, posicao 0
 
-  while (i != NULL) // percorra todos assentos e veja se existe ao menos um livre
+  while (*i != NULL) // percorra todos assentos e veja se existe ao menos um livre
   {
-    if (i->verificaDisponibilidade() == true)
+    if ((*i)->getDisponibilidade() == true)
       return true;
 
-    i++;
+    (*i)++;
   }
 
   return false;
+}
+
+char Fileira::getIdFileira()
+{
+	return idFileira;
+}
+
+Assento* Fileira::getAssento(int idAssento)
+{
+	if (idAssento >= 0 && idAssento < qtdAssentos) // transformar em tratamento de erro FUTURO
+	{
+		return assentos[idAssento];
+	}
 }

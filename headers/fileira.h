@@ -2,18 +2,22 @@
 #define FILEIRA_H
 
 #include <iostream>
-#include "../headers/Assento.h"
+#include "../headers/assento.h"
 
 class Fileira
 {
   private:
     char idFileira;
-    Assento *assentos; // vetor de assentos
+	int qtdAssentos;
+    Assento **assentos; // vetor de ponteiros para assentos
 
   public:
-    Fileira(char _idFileira, int qtdAssentos);
+    Fileira(char _idFileira, int _qtdAssentos);
     Fileira(const Fileira &f);
+	~Fileira();
     bool verificaDisponibilidade();
+	char getIdFileira();
+	Assento* getAssento(int idAssento);
 
 };
 
