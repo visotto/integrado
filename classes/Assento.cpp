@@ -1,4 +1,4 @@
-#include "../headers/Assento.h"
+#include "../headers/assento.h"
 
 Assento::Assento(int _idAssento, bool _disponibilidade, char _idFileira)
 {
@@ -14,14 +14,7 @@ Assento::Assento(const Assento &a) // construtor de copia FUTURO
   idFileira = a.idFileira;
 }
 
-bool Assento::verificaDisponibilidade()
-{
-  return disponibilidade;
-  // return (disponibilidade ? true : false);
-  // pois antes o tipo de retorno era int
-}
-
-void setDisponibilidade(bool _disponibilidade)
+void Assento::setDisponibilidade(bool _disponibilidade)
 {
   disponibilidade = _disponibilidade;
 }
@@ -31,22 +24,22 @@ void Assento::setIdAssento(int _idAssento)
   idAssento = _idAssento;
 }
 
-void Assento::setIdFileira(char _idFileira);
+void Assento::setIdFileira(char _idFileira)
 {
   idFileira = _idFileira;
 }
 
-bool getDisponibilidade()
+bool Assento::getDisponibilidade()
 {
   return disponibilidade;
 }
 
-int Assento::getIdAssento();
+int Assento::getIdAssento()
 {
   return idAssento;
 }
 
-char Assento::getIdFileira();
+char Assento::getIdFileira()
 {
   return idFileira;
 }
