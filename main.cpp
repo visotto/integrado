@@ -22,14 +22,61 @@ void gerenciaMain()
 			return;
 
 		  case 1:
-			  g.criarSala();
-			  break;
+				try
+				{
+			  		g.criarSala();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar a sala!" << endl;
+				}
+
+			    break;
+
 		  case 2:
-		  break;
+				try
+				{
+					g.removerSala();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+			    break;
+
 		  case 3:
-		  break;
+				try
+				{
+					g.buscarSala();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
 		  case 4:
-		  break;
+				try
+				{
+					g.editarSala();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+ 			    break;
 		 }
 	}
 }

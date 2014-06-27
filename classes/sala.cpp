@@ -1,10 +1,11 @@
 #include "../headers/sala.h"
 //using namespace std;
-Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdAssentos)
+Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos)
 {
   numSala = _numSala;
   capacidade = _capacidade;
   situacao = _situacao;
+  qtdAssentos = _qtdAssentos;
 
 //	cout << "Construindo uma sala" << endl;
 
@@ -46,6 +47,29 @@ void Sala::setNumSala(int numSala)
   Sala::numSala = numSala;
 }
 
+int Sala::getQtdAssentos()
+{
+	return qtdAssentos;
+}
+
+std::string Sala::getSituacao()
+{
+	switch (situacao)
+	{
+		case disponivel:
+			return "disponivel";
+
+		case manuEquipamento:
+			return "manuEquipamento";
+
+		case reforma:
+			return "reforma";
+
+		case manuGeral:
+			return "manuGeral";
+	}
+}
+
 void Sala::setCapacidade(int capacidade)
 {
   Sala::capacidade = capacidade;
@@ -54,6 +78,10 @@ void Sala::setCapacidade(int capacidade)
 int Sala::getCapacidade()
 {
   return capacidade;
+}
+
+void Sala::setSituacao(Situacao _situacao){
+	situacao = _situacao;
 }
 
 Fileira* Sala::getFileira(int idFileira)

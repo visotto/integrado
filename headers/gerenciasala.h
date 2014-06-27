@@ -5,7 +5,7 @@
 #include <iostream>
 #include "../headers/sala.h"
 
-#define MAX_SALAS 100
+#define MAX_SALAS 10
 
 class GerenciaSala{
   private:
@@ -15,8 +15,8 @@ class GerenciaSala{
   public:
 	GerenciaSala();
 	/* ------ CRUD ------- */            
-    bool criarSala(); // retorna true se criou com sucesso
-	bool removerSala(); // retorna true se removeu com sucesso
+    void criarSala(); // retorna true se criou com sucesso
+	void removerSala(); // retorna true se removeu com sucesso
 	void buscarSala();  
 	void editarSala();  
 	/* ------------------- */
