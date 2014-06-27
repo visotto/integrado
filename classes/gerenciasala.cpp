@@ -60,6 +60,9 @@ void GerenciaSala::removerSala()
 
 void GerenciaSala::buscarSala()
 {
+	if (!qtdSalas)
+		throw "\nNao existem salas cadastradas!\n";
+
 	int id;
 	cout << "Digite o id da sala que deseja buscar: ";
 	cin >> id;
@@ -105,6 +108,9 @@ void GerenciaSala::buscarSala()
 
 void GerenciaSala::editarSala()
 {
+	if (!qtdSalas)
+		throw "\nNao existem salas cadastradas!\n";
+
 	int id, _situacao;
 		
 	cout << "Digite o id da sala que deseja atualizar: ";
