@@ -23,8 +23,10 @@ void GerenciaSala::criarSala()
 		cout << "Digite a situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
 		cin >> situacao;
 
-		Situacao s = static_cast <Situacao> (situacao);
+		if (situacao < 0 || situacao > 3)
+			throw "\nSituacao da sala invalida!\n";
 
+		Situacao s = static_cast <Situacao> (situacao);
 		salas[qtdSalas] = new Sala(qtdSalas+1, capacidade, s, qtdAssentos);
 
 		cout << "\nSala criada com sucesso!\n" << endl;
@@ -37,14 +39,18 @@ void GerenciaSala::criarSala()
 
 void GerenciaSala::removerSala()
 {
+	if (!qtdSalas)
+		throw "\nNao existem salas cadastradas!\n";
+
 	int id;
 	cout << "Digite o id da sala que deseja remover: ";
 	cin >> id;
 
-	if (id > 0 && id <= MAX_SALAS && salas[id-1] != NULL && qtdSalas)
+	if (id > 0 && id <= MAX_SALAS && salas[id-1] != NULL)
 	{
 		qtdSalas--;
 		*salas[id-1] = *salas[qtdSalas]; // movemos a ultima sala para o lugar da sala que foi removida
+		salas[qtdSalas] = NULL; // e fazemos a ultima posicao apontar para null para evitar duplicacao
 		cout << "\nSala removida com sucesso!\n" << endl;
 	}
 

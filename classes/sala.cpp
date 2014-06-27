@@ -7,18 +7,9 @@ Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos)
   situacao = _situacao;
   qtdAssentos = _qtdAssentos;
 
-//	cout << "Construindo uma sala" << endl;
-
 	fileiras = new Fileira*[capacidade];
 	for (int i = 0; i < capacidade; i++)
-	{
 		fileiras[i] = new Fileira('A'+i, qtdAssentos);
-
-/*		cout << "ID Da fileira " << i << " : " << fileiras[i]->getIdFileira() << endl;
-		cout << "Assentos desta fileira:" << endl;
-		for (int j = 0; j < qtdAssentos; j++)
-			cout << fileiras[i]->getAssento(j)->getIdFileira() << fileiras[i]->getAssento(j)->getIdAssento() << endl;
-*/	}
 }
 
 Sala::Sala(const Sala &s)
@@ -91,3 +82,4 @@ Fileira* Sala::getFileira(int idFileira)
 		return fileiras[idFileira];
 	}
 }
+

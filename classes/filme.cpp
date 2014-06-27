@@ -2,31 +2,43 @@
 
 Filme()
 {
-  
+	filme = new Filme[qtdFilmes];  
 }
 
 Filme(const Filme &s)
 {
- 
+	
 }
 
-void Filme::setStatus(bool encerrada)
+
+void Filme::setTituloFilme(string _tituloFilme)
 {
-  Filme::encerrada = encerrada;
+	tituloFilme = _tituloFilme;
 }
 
-int Filme::getStatus()
+void Filme::setFxEtaria(string _tituloFilme, int _fxetaria)
 {
-  return encerrada;
+	fxetaria = _fxetaria;
 }
 
-void Filme::setFilme(Filme f, string _tituloFilme, int _fxetaria, char idioma)
+void Filme::setIdioma(string _tituloFilme, int _idioma)
 {
+	idioma = _idioma;
 }
 
-/*
-Filme Filme::getFilme(const Filme &f) // usa default e lista de inicializadores para retorna as informacoes relativas ao filme 
+void Filme::getTituloFilme()
 {
-  return filme;
+	return tituloFilme
 }
-*/
+
+void Filme::setFxEtaria()
+{
+	return fxetaria;
+}
+
+void Filme::setIdioma()
+{
+	return idioma;
+}
+
+

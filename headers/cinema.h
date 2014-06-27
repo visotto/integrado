@@ -1,10 +1,9 @@
 #include <iostream>
+#include "../headers/consts.h"
 
 using std::cin;
 using std::cout;
 using std::endl;
-
-#define MAX_SESSOES 10
 
 void gerenciaMain(Sessao **s)
 {

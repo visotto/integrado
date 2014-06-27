@@ -1,6 +1,5 @@
 #include "../headers/sessao.h"
-
-Sessao::maxHorarios = 48;
+#include "../headers/consts.h"
 
 Sessao(bool _encerrada, int _numVendido)
 {
@@ -73,12 +72,3 @@ int Sessao::getNumVendido()
 }
 
 
-void Sessao::setFilme(Filme f, string _tituloFilme, int _fxetaria, char idioma)
-{
-  Filme(f, tituloFilme, fxetaria ldn); // construtor de copia ou construtor normal sobrecarregado ? FUTURO
-}
-
-Filme Sessao::getFilme(const Filme &f) // usa default e lista de inicializadores para retorna as informacoes relativas ao filme 
-{
-  return filme;
-}

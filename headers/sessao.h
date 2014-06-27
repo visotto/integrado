@@ -2,7 +2,8 @@
 #define SESSAO_H
 
 #include <iostream>
-#include <ctime.h>
+#include "../headers/consts.h"
+
 using std::string;
 
 typedef struct _horario
@@ -14,12 +15,11 @@ typedef struct _horario
 class Sessao
 {
   private:
-    static const int maxHorarios;
     Horario *horarios;
     int qtdHorarios;
     bool encerrada;
     int numVendido;
-    Filme *filme;
+    Filme f;
     Sala *sala; 
 
   public:
@@ -36,8 +36,6 @@ class Sessao
     void setNumVendido(int numVendido);
     int getDisponivel();
 
-    void setFilme(Filme f, string _tituloFilme, int _fxetaria, char _idioma);
-    Filme getFilme(const Filme &f);
 };
 
 #endif // SESSAO_H

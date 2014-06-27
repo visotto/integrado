@@ -4,8 +4,7 @@
 
 #include <iostream>
 #include "../headers/sala.h"
-
-#define MAX_SALAS 10
+#include "../headers/consts.h"
 
 class GerenciaSala{
   private:

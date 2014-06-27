@@ -4,6 +4,8 @@
 #include <iostream>
 #include "../headers/fileira.h"
 
+using std::string
+
 enum Situacao {disponivel, manuEquipamento, reforma, manuGeral};
 
 class Sala
@@ -24,7 +26,7 @@ class Sala
     void setNumSala(int numSala);
 
 	int getQtdAssentos();
-	std::string getSituacao();
+	string getSituacao();
 	void setSituacao(Situacao _situacao); // Foi Adicionado essa pola, favor colocar no relatorio
     
     void setCapacidade(int capacidade);

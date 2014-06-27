@@ -7,6 +7,8 @@ using std::string;
 class Filme
 {
   private:
+	Filme *filme;
+	int qtdFilmes
     string tituloFilme;
     int fxetaria;
     char idioma;  //L - legendado; D -  dublado; N - nacional
@@ -17,11 +19,14 @@ class Filme
     Filme(const Sessao &s);
     ~Filme();
 
-    void setStatus(bool encerrada); // modifica o status da sessao: 1 = encerrada, 0 caso contrario
-    int getStatus();
+    void setTituloFilme(string _filme);
+    void setFxEtaria(string _filme);
+    void setIdioma(string _filme);
 
-    void setFilme(string _filme, int faixaet = 0, char idioma = 'D'): tituloFilme(_filme), fxetaria(_faixaet), idioma(_idioma);
-    //Filme getFilme(const Filme &f);
+	string getTituloFilme();
+    int getFxEtaria();
+    char getIdioma();
+
 };
 
 #endif // FILME_H
