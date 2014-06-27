@@ -22,3 +22,5 @@
 
 # New from integrado
 *.cpp~
+*.h~
+
