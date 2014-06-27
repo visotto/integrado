@@ -115,6 +115,6 @@ void GerenciaSala::editarSala()
 		cout << "Situacao atualizada com sucesso" << endl;
 	}
 
-	else{cout << "fudeu" << endl;
-		throw "\nNao existe uma sala com este id!\n";}
+	else
+		throw "\nNao existe uma sala com este id!\n";
 }
