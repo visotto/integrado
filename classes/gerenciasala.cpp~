@@ -1,0 +1,50 @@
+#include "../headers/gerenciasala.h"
+
+using namespace std;
+
+GerenciaSala::GerenciaSala()
+{
+	qtdSalas = 0;
+	salas[0] = NULL;
+}
+
+bool GerenciaSala::criarSala()
+{
+	int capacidade, qtdAssentos;
+	Situacao situacao;
+
+	// trocar o IF ELSE externo por tratamento de excecao
+	if (qtdSalas >= 0 && qtdSalas < MAX_SALAS)
+	{
+		cout << "Digite a capacidade da sala (quantidade de fileiras na sala): ";
+		cin >> capacidade;
+		cout << "Digite a quantidade de assentos em cada fileira: ";
+		cin >> qtdAssentos;
+		cout << "Digite a situacao da sala (disponivel, manuEquipamento, reforma, manuGeral): ";
+		cin >> situacao;
+
+		if (salas[qtdSalas] = new Sala(capacidade, situacao, qtdAssentos)) cout << "sala criada com sucesso" << endl;
+		else cout << "erro" << endl;
+		qtdSalas++;
+	}
+
+	else
+	{
+		cout << "Nao ha espaco" << endl;
+	}
+}
+
+bool GerenciaSala::removerSala()
+{
+
+}
+
+bool GerenciaSala::buscarSala()
+{
+
+}
+
+bool GerenciaSala::editarSala()
+{
+
+}

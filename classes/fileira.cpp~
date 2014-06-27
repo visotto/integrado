@@ -51,6 +51,6 @@ Assento* Fileira::getAssento(int idAssento)
 {
 	if (idAssento >= 0 && idAssento < qtdAssentos) // transformar em tratamento de erro FUTURO
 	{
-		return &assentos[idAssento];
+		return assentos[idAssento];
 	}
 }

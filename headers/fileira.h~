@@ -2,7 +2,7 @@
 #define FILEIRA_H
 
 #include <iostream>
-#include "../headers/Assento.h"
+#include "../headers/assento.h"
 
 class Fileira
 {

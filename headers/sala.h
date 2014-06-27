@@ -24,7 +24,8 @@ class Sala
     
     void setCapacidade(int capacidade);
     int getCapacidade();
-    
+
+	Fileira* getFileira(int idFileira);
 };
 
 #endif // SALA_H

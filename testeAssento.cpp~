@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#include "headers/Assento.h"
+#include "headers/assento.h"
 
 int main()
 {

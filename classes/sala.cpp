@@ -55,3 +55,11 @@ int Sala::getCapacidade()
 {
   return capacidade;
 }
+
+Fileira* Sala::getFileira(int idFileira)
+{
+	if (idFileira >= 0 && idFileira < capacidade) // transformar em tratamento de erro FUTURO
+	{
+		return fileiras[idFileiras];
+	}
+}

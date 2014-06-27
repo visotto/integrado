@@ -15,7 +15,7 @@ class Sala
     Fileira **fileiras; // vetor de ponteiros para fileiras
 
   public:
-    Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdFileiras, int qtdAssentos);
+    Sala(int _numSala, int _capacidade, Situacao _situacao, int qtdAssentos);
     Sala(const Sala &s);
 	~Sala();
 
@@ -24,7 +24,8 @@ class Sala
     
     void setCapacidade(int capacidade);
     int getCapacidade();
-    
+
+	Fileira* getFileira(int idFileira);
 };
 
 #endif // SALA_H

@@ -20,5 +20,4 @@ int main()
 			cout << fileiras[i]->getAssento(j)->getIdFileira() << fileiras[i]->getAssento(j)->getIdAssento() << endl;
 		}
 	}
-
 }
