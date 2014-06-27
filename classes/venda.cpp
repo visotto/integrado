@@ -1,4 +1,4 @@
-#include "../headers/Venda.h"
+#include "../headers/venda.h"
 
 Venda(Date _dtVenda, double _valorTotal, FormaPagto _formaPagto)
 {

@@ -1,2 +1,2 @@
 // Control - Controle
-#include "../headers/GerenciaSessao.h"
+#include "../headers/gerenciasessao.h"

@@ -1,4 +1,4 @@
-#include "../headers/Sessao.h"
+#include "../headers/sessao.h"
 
 Sessao::maxHorarios = 48;
 
