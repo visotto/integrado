@@ -47,4 +47,6 @@ Assento* Fileira::getAssento(int idAssento)
 	{
 		return assentos[idAssento];
 	}
+  else
+    return NULL;
 }

@@ -19,18 +19,21 @@ class Arvore {
     No<T> *raiz;
 
   public:
+    // Construtor e destrutor
     Arvore();
     ~Arvore();
+    
+    // Metodos para manipular a raiz da arvore
     void setRaiz(No<T> *r);
     No<T>* getRaiz();
     No<T>** getEndRaiz();
+    
+    // CRUD
+    bool insere(No<T> **r, T chave);
+    No<T>* remove(No<T>* r, T chave);
     void listar(No<T> *r);
     T busca(No<T> *r, T chave);
-    bool insere(No<T> **r, T chave);
-    No<T> *removeAux(No<T> *r, T chave);
-    No<T>* remove(No<T>* r, T chave);
 };
-
 
 // =================================
 // Metodos relativas a classe No
@@ -151,67 +154,6 @@ bool Arvore<T>::insere(No<T> **r, T chave)
 }
 
 template <class T>
-No<T>* Arvore<T>::removeAux(No<T> *r, T chave)
-{
-  if (chave < r->info) // chave menor que no atual
-    r->esq = removeAux(r->esq, chave); // desco p/ esq
-  else if (chave > r->info) // chave maior que no atual
-    r->dir = removeAux(r->dir, chave); // desco p/ dir
-  else
-  { // encontrou elemento a ser removido
-       // elemento sem filhos, soh remover
-    if (r->esq == NULL && r->dir == NULL)
-    {
-      // free(r);
-      // r = NULL;
-      r->~No();
-    }
-
-    // soh tem o filho da direita
-    else if (r->esq == NULL)
-    {
-      No<T>* temp;
-      temp = new No<T>;
-      temp = r;
-
-      r = r->dir;
-      // free(temp);
-      temp->~No(); 
-    }
-
-    // soh tem o filho da esquerda
-    else if (r->dir == NULL)
-    {
-     No<T>* temp;
-      temp = new No<T>;
-      temp = r;
-
-      r = r->esq;
-      // free(temp);
-      temp->~No();
-    }
-
-    // tem os 2 filhos
-    else
-    {
-      // No* temp = r->esq; // vai p/ o filho da esq
-      No<T>* temp;
-      temp = new No<T>;
-      temp = r->esq;
-
-      while (temp->dir != NULL) // atualiza ateh achar o maior filho da sub arvore a dir
-        temp = temp->dir;
-
-      r->info = temp->info; // troca as infos, coloca no lugar do no a ser removido
-      temp->info = chave;
-      // trocou r->info com temr->info
-
-      r->esq = removeAux(r->esq, chave); // chama recursivamente p/ filho da esq
-    }
-  }
-}
-
-template <class T>
 No<T>* Arvore<T>::remove(No<T>* r, T chave)
 {
   try
@@ -243,78 +185,3 @@ No<T>* Arvore<T>::remove(No<T>* r, T chave)
   
   return ret->getRaiz();
 }  
-
-class Busca
-{
-  friend ostream & operator<<(ostream &o, const Busca &b);
- 
-  private:
-    int id;
-    float valor;
-    
-  public:
-    Busca() : id(0), valor(0.0) {};
-    Busca(int i, float v) : id(i), valor(v) {} ;
-    int getQueryID() const
-    {
-      return id;
-    }
-    float getValor() const
-    {
-      return valor;
-    }
-    bool operator<(const Busca &b)
-    {
-      return (id < b.id);
-    }
-    bool operator>(const Busca &b)
-    {
-      return (id > b.id);
-    }
-    bool operator==(const Busca &b)
-    {
-      return (id == b.id);
-    }
-    bool operator!=(const Busca &b)
-    {
-      return (id != b.id);
-    }
-};
-
-ostream & operator<<(ostream &o, const Busca &b)
-{
-  o << "ID: " << b.getQueryID() << " Valor: " << b.getValor();
-  return o;
-}
-
-int main(int argc, char *argv[]) {
-  
-  Arvore<Busca> r;
-  Busca b1(44,99.9), b2(14, 6.0);
-  
-  r.insere(r.getEndRaiz(), Busca(5,1.0));
-  r.insere(r.getEndRaiz(), Busca(78,2.0));
-  r.insere(r.getEndRaiz(), Busca(10,3.0));
-  r.insere(r.getEndRaiz(), Busca(14,4.0));
-  r.insere(r.getEndRaiz(), Busca(37,5.0));
-  r.insere(r.getEndRaiz(), Busca(25,6.0));
-  r.insere(r.getEndRaiz(), Busca(2,7.0));
-  r.insere(r.getEndRaiz(), Busca(44,8.0));
-  r.listar(r.getRaiz());
-  
-  try {r.busca(r.getRaiz(), b1);
-    cout << "tem b1" << endl;}
-  catch(char const* s){cout<<s<<endl;}
-
-  try {r.busca(r.getRaiz(), b2);
-    cout << "tem b2" << endl;}
-  catch(char const* s){cout<<s<<endl;}
-  
-  printf("\n");
-  
-  r.setRaiz(r.remove(r.getRaiz(), b1));
-  r.listar(r.getRaiz());  
-//  printf("%d", r->busca(*r, 2));
-  
-  return 0;
-}

@@ -37,7 +37,7 @@ char Filme::getIdioma()
 	return idioma;
 }
 
-string getQueryID()
+string Filme::getQueryID()
 {
 	return tituloFilme;
 }

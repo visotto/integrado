@@ -76,9 +76,11 @@ Fileira* Sala::getFileira(int idFileira)
 	{
 		return fileiras[idFileira];
 	}
+   else
+    return NULL;
 }
 
-int getQueryID()
+int Sala::getQueryID()
 {
 	return numSala;
 }
