@@ -1,8 +1,9 @@
 #include "../headers/sessao.h"
 #include "../headers/consts.h"
 
-Sessao::Sessao(Sala *_sala, Horario _horario, Filme *_filme)
+Sessao::Sessao(Sala *_sala, int _id, Horario _horario, Filme *_filme)
 {
+	id = _id;
   sala = _sala;	
 	horario = _horario;
   encerrada = false;
@@ -63,3 +64,8 @@ int Sessao::getNumVendido()
 {
   return numVendido;
 }
+
+int getQueryID(){
+	return id;
+}
+

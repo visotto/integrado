@@ -1,15 +1,18 @@
 #include <iostream>
 #include "headers/gerenciasala.h"
-using namespace std;
+#include "headers/gerenciafilme.h"
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
 
-void gerenciaMain()
+void gerenciadorDeSalas(GerenciaSala &g)
 {
 	int opcao;
-	GerenciaSala g;
 
 	while (1)
 	{
-		cout << "Escolha uma opcao para manipulacao da Sala" << endl;
+		cout << "Escolha uma opcao:" << endl;
 		cout << "0. Voltar para o Menu anterior" << endl;
 		cout << "1. Criar Sala" << endl;
 		cout << "2. Remover Sala" << endl;
@@ -80,9 +83,128 @@ void gerenciaMain()
 		 }
 	}
 }
+void gerenciadorDeFilmes(GerenciaFilme &g)
+{
+	int opcao;
 
-using namespace std;
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Filme" << endl;
+		cout << "2. Remover Filme" << endl;
+		cout << "3. Buscar Filme" << endl;
+		cout << "4. Editar Filme" << endl;
+		cout << "5. Listar Filmes" << endl;
+		cin >> opcao;
+
+		switch (opcao){
+		  case 0:
+			return;
+
+		  case 1:
+				try
+				{
+			  		g.criarFilme();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar o filme!" << endl;
+				}
+
+			    break;
+
+		  case 2:
+				try
+				{
+					g.removerFilme();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+			    break;
+
+		  case 3:
+				try
+				{
+					g.buscarFilme();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
+		  case 4:
+				try
+				{
+					g.editarFilme();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+ 			    break;
+
+		  case 5:
+				try
+				{
+					g.listarFilmes();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+ 			    break;
+		 }
+	}
+}
+
+void ativarCinema()
+{
+	int opcao;
+	GerenciaSala s;
+	GerenciaFilme f;
+
+	while (1)
+	{
+		cout << "Escolha um menu:" << endl;
+		cout << "0. Sair do programa" << endl;
+		cout << "1. Gerenciar salas" << endl;
+		cout << "2. Gerenciar filmes" << endl;
+		cin >> opcao;
+
+		switch(opcao)
+		{
+			case 0:
+				return;
+
+			case 1:
+				gerenciadorDeSalas(s);
+				break;
+			case 2:
+				gerenciadorDeFilmes(f);
+				break;
+		}
+	}
+}
+
 int main(int argc, char *argv[]) {
-	gerenciaMain();
+	ativarCinema();
 	return 0;
 }

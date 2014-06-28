@@ -78,3 +78,8 @@ Fileira* Sala::getFileira(int idFileira)
 	}
 }
 
+int getQueryID()
+{
+	return numSala;
+}
+

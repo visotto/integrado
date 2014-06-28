@@ -10,6 +10,7 @@ enum FormaPagto{dinheiro, cartao};
 
 class Venda{
   private:
+	int id;
     double valorTotal;
     FormaPagto formaPagto;
     Ingresso **ingressos; // vetor de ponteiros para ingressos
@@ -17,12 +18,15 @@ class Venda{
     Sessao *sessao; // atualiza disponibilidade
   
   public:
-    Venda(Sessao *_sessao, FormaPagto _formaPagto);
+    Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto);
 	~Venda();
     double calcularValorTotal();
     void emitirIngresso(Ingresso *ingresso);
     void addIngresso(Ingresso *ingresso);
     void removeIngresso(Ingresso *ingresso);
+
+	int getQueryID();
+
 };
 
 #endif // VENDA_H

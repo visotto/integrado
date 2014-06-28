@@ -32,6 +32,8 @@ class Sala
     int getCapacidade();
 
 	Fileira* getFileira(int idFileira);
+
+	int getQueryID();
 };
 
 #endif // SALA_H

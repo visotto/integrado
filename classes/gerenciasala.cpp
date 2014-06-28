@@ -25,15 +25,15 @@ GerenciaSala::GerenciaSala()
 	if(!leitura.is_open( )) 
 	{
 		leitura.clear( ); //reseta o objeto leitura, para limpar memória do sistema
-		cout << "Nao foi possível abrir arquivo!\n";
+		cout << "Nao foi possível abrir arquivo sala.data!\n";
 		return;	
 	}
 
 	// Variavel para leitura de cada linha do arquivo
 	string leituraLinha;
 
-	// Variaveis que sera passada para o construtor de cada arquivo
-	int k, _capacidade, _qtdAssentos, _numSala;
+	// Variaveis que sera passada para o construtor de cada sala
+	int _capacidade, _qtdAssentos, _numSala;
 	string _situacao;
 	Situacao s;	
 
@@ -44,31 +44,30 @@ GerenciaSala::GerenciaSala()
 	// Veririca se arquivo esta vazio
 	if(leituraLinha != "")
 	{
-		cout << "Captea" << endl;
-		qtdSalas = leituraLinha[0] - '0';
+		//Temos agora uma string stream para processar a string leituraLinha;
+		stringstream convertQtdSalas(leituraLinha);
+		
+		//Extrai o inteiro da string stream para a variável "qtdSalas"	  	 	    
+		convertQtdSalas >> qtdSalas;
 
-		k = 0;
+		int k = 0;
 		// Enquanto tiver salas armazenadas no arquivo
 		while(k < qtdSalas){
 			
 			// Le do arquivo o numero da sala
 			getline(leitura, leituraLinha);
-			
-			//Temos agora uma string stream para processar a string leituraLinha;
-			stringstream a(leituraLinha);
-  	 	    
-  	 	    //Extrai o inteiro da string stream para a variável "_numSala"
-  	 	    a >> _numSala;
+			stringstream convertNumSala(leituraLinha);  	 	    
+  	 	    convertNumSala >> _numSala;
 
 			// Le do arquivo a capacidade da sala
 			getline(leitura, leituraLinha);
-			stringstream b(leituraLinha);
-			b >> _capacidade;
+			stringstream convertCapacidade(leituraLinha);
+			convertCapacidade >> _capacidade;
 
 			// Le do arquivo a quantidade de assentos
 			getline(leitura, leituraLinha);
-			stringstream c(leituraLinha);
-			c >> _qtdAssentos;
+			stringstream convertQtdAssentos(leituraLinha);
+			convertQtdAssentos >> _qtdAssentos;
 			
 			// Le do arquivo a situacao da sala
 			getline(leitura, leituraLinha);
@@ -91,7 +90,7 @@ GerenciaSala::GerenciaSala()
 		 	  s = alocada;
 		
 
-			// Aloca a classe armazenada no arquivo
+			// Aloca a sala k armazenada no arquivo
 			salas[k] = new Sala(_numSala, _capacidade, s, _qtdAssentos);
 
 			// Le os status dos assentos

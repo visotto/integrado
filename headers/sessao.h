@@ -13,6 +13,7 @@ using std::string;
 class Sessao
 {
   private:
+	int id;
     Horario horario;
     bool encerrada;
     int numVendido;
@@ -22,7 +23,7 @@ class Sessao
 	int qtdIngressos;
 
   public:
-    Sessao(Sala *_sala, Horario _horario, Filme *_filme);
+    Sessao(Sala *_sala, int _id, Horario _horario, Filme *_filme);
 	~Sessao();
 
     void setStatus(bool encerrada);
@@ -36,6 +37,8 @@ class Sessao
     void incNumVendido(char opcao);
     int getDisponivel();
 	int getNumVendido();
+
+	int getQueryID();
 
 };
 

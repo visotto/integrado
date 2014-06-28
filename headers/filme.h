@@ -22,6 +22,7 @@ class Filme
 	string getTituloFilme();
     int getFxEtaria();
     char getIdioma();
+	string getQueryID();
 
 };
 

@@ -1,9 +1,9 @@
-#if !defined(CONSTS_H)
+#ifndef CONSTS_H
 #define CONSTS_H
 
-#define MAX_SESSOES 10 //cinema.h
-static const int maxHorarios = 48; //sessao.h
-#define MAX_SALAS 10 //gerenciasala.h
-#define MAX_INGRESSOS 10 // venda.h
+#define MAX_SESSOES 100 //cinema.h
+#define MAX_SALAS 100 //gerenciasala.h
+#define MAX_INGRESSOS 100 // venda.h
+#define MAX_FILMES 100 // gerenciafilme.h
 
 #endif

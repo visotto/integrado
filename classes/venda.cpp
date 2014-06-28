@@ -3,8 +3,9 @@
 using std::cout;
 using std::endl;
 
-Venda::Venda(Sessao *_sessao, FormaPagto _formaPagto)
+Venda::Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto)
 {
+	id = _id;
 	sessao = _sessao;
 	formaPagto = _formaPagto;
 
@@ -86,4 +87,8 @@ void Venda::removeIngresso(Ingresso *ingresso)
 
 	// so chegamos neste cout se nao encontrarmos o ingresso, ou se ele nao foi vendido
 	cout << "Este ingresso ainda nao foi vendido!" << endl;
+}
+
+int getQueryID(){
+	return id;
 }

@@ -1,15 +1,27 @@
 // BOUNDARY - fronteira
-#ifndef GERENCIASESSAO_H
-#define GERENCIASESSAO_H
+#ifndef GERENCIAFILME_H
+#define GERENCIAFILME_H
 
 #include <iostream>
+#include "../headers/consts.h"
+#include "../headers/filme.h"
 
-class GerenciaSessao{
-  private: 
-  
+class GerenciaFilme{
+  private:
+	int qtdFilmes;
+	Filme *filmes[MAX_FILMES];
+  	void escreverFilme(); // funcao para escrever no arquivo Filmes.data os Filmes cadastradas
+
   public:
-    //CRUD DE SEESOES
+	GerenciaFilme();
+	/* ------ CRUD ------- */            
+    void criarFilme(); // retorna true se criou com sucesso
+	void removerFilme(); // retorna true se removeu com sucesso
+	void buscarFilme();  
+	void editarFilme(); 
+	/* ------------------- */
+	void listarFilmes();
 
 };
 
-#endif // GERENCIASESSAO_H
+#endif // GERENCIAFILME_H
