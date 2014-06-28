@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-
+#include <stdlib.h>
+#include <sstream>
 
 #include "../headers/gerenciasala.h"
 
@@ -8,27 +9,28 @@ using namespace std;
 
 GerenciaSala::GerenciaSala()
 {	
-	
+		
 	int i, j;
 	for (i = 0; i < MAX_SALAS; i++)
 		salas[i] = NULL;
+	qtdSalas = 0;
 
 	// Variavel para leitura do arquivo
 	ifstream leitura; 
-
+	
 	// Carrega o arquivo
 	leitura.open("resources/salas.data");	
 
-	// Caso ocorra
+	// Caso o arquivo nao seja aberto corretamente
 	if(!leitura.is_open( )) 
 	{
 		leitura.clear( ); //reseta o objeto leitura, para limpar memória do sistema
-		cout << "Não foi possível abrir arquivo!\n";
-		return;
-		
+		cout << "Nao foi possível abrir arquivo!\n";
+		return;	
 	}
+
 	// Variavel para leitura de cada linha do arquivo
-	char leituraLinha[100];
+	string leituraLinha;
 
 	// Variaveis que sera passada para o construtor de cada arquivo
 	int k, _capacidade, _qtdAssentos, _numSala;
@@ -36,63 +38,80 @@ GerenciaSala::GerenciaSala()
 	Situacao s;	
 
 	// Le do arquivo a quantidade de salas armazenadas
-	leitura.getline(leituraLinha,100);
-	qtdSalas = leituraLinha[0];
+	getline(leitura, leituraLinha);
 
-	k = 0;
-	// Enquanto tiver salas armazenadas no arquivo
-	while(k < qtdSalas){
-		// Le do arquivo o numero da sala
-		leitura.getline(leituraLinha,100);
-		_numSala = leituraLinha[0];
+  
+	// Veririca se arquivo esta vazio
+	if(leituraLinha != "")
+	{
+		cout << "Captea" << endl;
+		qtdSalas = leituraLinha[0] - '0';
 
-		// Le do arquivo a capacidade da sala
-		leitura.getline(leituraLinha,100);
-		_capacidade = leituraLinha[0];
-
-		// Le do arquivo a quantidade de assentos
-		leitura.getline(leituraLinha,100);
-		_qtdAssentos = leituraLinha[0];
-
-		// Le do arquivo a situacao da sala
-		leitura.getline(leituraLinha,100);
-		_situacao = leituraLinha;
-
-		// Converte a string lida para tipo situacao
-		if(_situacao == "disponivel")
-			s = disponivel;
+		k = 0;
+		// Enquanto tiver salas armazenadas no arquivo
+		while(k < qtdSalas){
 			
-		if(_situacao == "manuEquipamento")
-			s = manuEquipamento;
-		
-		if(_situacao == "reforma")
-			s = reforma;
-		
-		if(_situacao == "manuGeral")
-			s = manuGeral;
-	
-		if(_situacao == "alocada")
-		   s = alocada;
-
-
-		// Aloca a classe armazenada no arquivo
-		salas[k] = new Sala(_numSala, _capacidade, s, _qtdAssentos);
-
-		// Le os status dos assentos
-		for(i = 0; i < _capacidade; i++){
-			leitura.getline(leituraLinha,100);
+			// Le do arquivo o numero da sala
+			getline(leitura, leituraLinha);
 			
-			for(j = 0; j < _qtdAssentos; j++){
-				if(leituraLinha[j] == 'S')
-					salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(true);
-				else
-					salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(false);
+			//Temos agora uma string stream para processar a string leituraLinha;
+			stringstream a(leituraLinha);
+  	 	    
+  	 	    //Extrai o inteiro da string stream para a variável "_numSala"
+  	 	    a >> _numSala;
+
+			// Le do arquivo a capacidade da sala
+			getline(leitura, leituraLinha);
+			stringstream b(leituraLinha);
+			b >> _capacidade;
+
+			// Le do arquivo a quantidade de assentos
+			getline(leitura, leituraLinha);
+			stringstream c(leituraLinha);
+			c >> _qtdAssentos;
+			
+			// Le do arquivo a situacao da sala
+			getline(leitura, leituraLinha);
+			_situacao = leituraLinha;
+
+			// Converte a string lida para tipo situacao
+			if(_situacao == "disponivel")
+				s = disponivel;
+				
+			if(_situacao == "manuEquipamento")
+				s = manuEquipamento;
+			
+			if(_situacao == "reforma")
+				s = reforma;
+			
+			if(_situacao == "manuGeral")
+				s = manuGeral;
+			
+		    if(_situacao == "alocada")
+		 	  s = alocada;
+		
+
+			// Aloca a classe armazenada no arquivo
+			salas[k] = new Sala(_numSala, _capacidade, s, _qtdAssentos);
+
+			// Le os status dos assentos
+			for(i = 0; i < _capacidade; i++){
+				getline(leitura, leituraLinha);
+				
+				for(j = 0; j < _qtdAssentos; j++){
+					if(leituraLinha[j] == 'S')
+						salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(true);
+					else
+						salas[k]->getFileira(i)->getAssento(j)->setDisponibilidade(false);
+				}
 			}
-		}
 
-		k++;
+			k++;
+		}
 	}
-	
+	// Fecha o arquivo
+	leitura.close();	
+
 	
 }
 
@@ -224,7 +243,7 @@ void GerenciaSala::editarSala()
 		{
 			cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3, alocada = 4): ";
 			cin >> _situacao;
-
+			
 			Situacao s = static_cast <Situacao> (_situacao);
 			salas[i]->setSituacao(s);
 
@@ -247,13 +266,13 @@ void GerenciaSala::escreverSala(){
 	
 	char aux; // Variavel para gravar o valor de qtdSalas no arquivo para leituras futuras
 	
-	escreve << (char)qtdSalas << "\n";
+	escreve << qtdSalas << "\n";
 	for(i = 0; i < qtdSalas && salas[i] != NULL; i++){
 		
 		// Escreve no arquivo salas.data
-		escreve << (char)salas[i]->getNumSala() << "\n";
-		escreve << (char)salas[i]->getCapacidade() << "\n";
-		escreve << (char)salas[i]->getQtdAssentos() << "\n";
+		escreve << salas[i]->getNumSala() << "\n";
+		escreve << salas[i]->getCapacidade() << "\n";
+		escreve << salas[i]->getQtdAssentos() << "\n";
 		escreve << salas[i]->getSituacao() << "\n";
 		
 		for (int j = 0; j < salas[i]->getCapacidade(); j++){	
