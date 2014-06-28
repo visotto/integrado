@@ -12,27 +12,27 @@ void Filme::setTituloFilme(string _tituloFilme)
 	tituloFilme = _tituloFilme;
 }
 
-void Filme::setFxEtaria(string _tituloFilme, int _fxetaria)
+void Filme::setFxEtaria(int _fxetaria)
 {
 	fxetaria = _fxetaria;
 }
 
-void Filme::setIdioma(string _tituloFilme, int _idioma)
+void Filme::setIdioma(char _idioma)
 {
 	idioma = _idioma;
 }
 
-void Filme::getTituloFilme()
+string Filme::getTituloFilme()
 {
-	return tituloFilme
+	return tituloFilme;
 }
 
-void Filme::setFxEtaria()
+int Filme::getFxEtaria()
 {
 	return fxetaria;
 }
 
-void Filme::setIdioma()
+char Filme::getIdioma()
 {
 	return idioma;
 }

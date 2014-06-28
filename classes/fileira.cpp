@@ -13,15 +13,9 @@ Fileira::Fileira(char _idFileira, int _qtdAssentos)
 		assentos[i] = new Assento(i+1, true, _idFileira);
 }
 
-Fileira::Fileira(const Fileira &f)
-{
-  idFileira = f.idFileira;
-}
-
 Fileira::~Fileira()
 {
 	for (int i = 0; i < qtdAssentos; i++)
-		if (assentos[i] != NULL)
 			delete assentos[i];
 
   delete [] assentos;

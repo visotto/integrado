@@ -14,11 +14,10 @@ class Filme
 
   public:
     Filme(string _tituloFilme, int _fxetaria, char _idioma);
-    ~Filme();
 
     void setTituloFilme(string _filme);
-    void setFxEtaria(string _filme);
-    void setIdioma(string _filme);
+    void setFxEtaria(int _fxEtaria);
+    void setIdioma(char idioma);
 
 	string getTituloFilme();
     int getFxEtaria();

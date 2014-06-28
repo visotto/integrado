@@ -12,7 +12,6 @@ class Assento
 
   public:
     Assento(int _idAssento, bool _disponibilidade, char _idFileira);
-    Assento(const Assento &a); // construtor de copia FUTURO
     void setDisponibilidade(bool _disponibilidade);
     void setIdAssento(int _idAssento);
     void setIdFileira(char _idFileira);

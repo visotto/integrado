@@ -1,35 +1,50 @@
 #include "../headers/ingresso.h"
 
-Ingresso(Date _dtIngresso, double _valor, Tipo _tipo)
+Ingresso::Ingresso(Horario _horaIngresso, Assento *_assento)
 {
-  dtIngresso = _dtIngresso;
-  valor = _valor;
-  tipo = _tipo;
+	horaIngresso = _horaIngresso;
+	assento = _assento;
+	std::cout << "Contruindo um ingresso no assento " << assento->getIdFileira() << assento->getIdAssento() << std::endl;
 }
 
-Ingresso(const Ingresso &i) // construtor de copia FUTURO
+bool Ingresso::isVendido()
 {
-  dtIngresso = i.dtIngresso;
-  valor = i.valor;
-  tipo = i.tipo;
+	return vendido;
 }
 
-Date getDtingresso();
+double Ingresso::getValor()
 {
-  return dtIngresso;
+	return valor;
 }
 
-void setDtingresso(Date dtIngresso)
+Horario Ingresso::getHorario()
 {
-  Ingresso::dtIngresso = dtIngresso;
+	return horaIngresso;
 }
 
-double getValor()
+Tipo Ingresso::getTipo()
 {
-  return valor;
+	return tipo;
 }
 
-void setValor()
+Assento* Ingresso::getAssento()
 {
-  Ingresso::valor = valor;
+	return assento;
+}
+
+void Ingresso::setValor(double valor)
+{
+	Ingresso::valor = valor;
+}
+
+void Ingresso::venda()
+{
+	vendido = true;
+	assento->setDisponibilidade(false);
+}
+
+void Ingresso::cancela()
+{
+	vendido = false;
+	assento->setDisponibilidade(true);
 }

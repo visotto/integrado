@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include "../headers/consts.h"
+#include "../headers/ingresso.h"
+#include "../headers/sessao.h"
 
 enum FormaPagto{dinheiro, cartao};
 
 class Venda{
-  private: 
-    Date dtVenda;
+  private:
     double valorTotal;
     FormaPagto formaPagto;
     Ingresso **ingressos; // vetor de ponteiros para ingressos
@@ -16,13 +17,12 @@ class Venda{
     Sessao *sessao; // atualiza disponibilidade
   
   public:
-    Venda(Date _dtVenda, double _valorTotal, FormaPagto _formaPagto);
-    Venda(const Venda &v);
+    Venda(Sessao *_sessao, FormaPagto _formaPagto);
+	~Venda();
     double calcularValorTotal();
-    void emitirIngresso(Arrays ingresso);
-    void addIngresso(Ingresso ingresso);
-    void removeIngresso(Ingresso ingresso);
-    
+    void emitirIngresso(Ingresso *ingresso);
+    void addIngresso(Ingresso *ingresso);
+    void removeIngresso(Ingresso *ingresso);
 };
 
 #endif // VENDA_H

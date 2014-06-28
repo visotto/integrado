@@ -13,7 +13,6 @@ class Fileira
 
   public:
     Fileira(char _idFileira, int _qtdAssentos);
-    Fileira(const Fileira &f);
 	~Fileira();
     bool verificaDisponibilidade();
 	char getIdFileira();

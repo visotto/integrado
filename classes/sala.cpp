@@ -12,17 +12,9 @@ Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos)
 		fileiras[i] = new Fileira('A'+i, qtdAssentos);
 }
 
-Sala::Sala(const Sala &s)
-{
-  numSala = s.numSala;
-  capacidade = s.capacidade;
-  situacao = s.situacao;
-}
-
 Sala::~Sala()
 {
 	for (int i = 0; i < capacidade; i++)
-		if (fileiras[i] != NULL)
 			delete fileiras[i];
 
   delete [] fileiras;

@@ -1,70 +1,53 @@
 #include "../headers/sessao.h"
 #include "../headers/consts.h"
 
-Sessao::Sessao(Sala *_sala, bool _encerrada, int _numVendido, Filme *_filme)
+Sessao::Sessao(Sala *_sala, Horario _horario, Filme *_filme)
 {
   sala = _sala;	
-  horarios = new Horario[maxHorarios];
-  qtdHorarios = 0;
-  encerrada = _encerrada;
-  numVendido = _numVendido;
+	horario = _horario;
+  encerrada = false;
   filme = _filme;
   numVendido = 0;
+  ingressos = new Ingresso*[sala->getCapacidade()*sala->getQtdAssentos()];
+
+	std::cout << "Contruindo uma sessao do filme " << filme->getTituloFilme() << " que comeca as " << horario << std::endl;
+
+	for (int i = 0; i < sala->getCapacidade(); i++)
+		for (int j = 0; j < sala->getQtdAssentos(); j++)
+			ingressos[sala->getQtdAssentos()*i + j] = new Ingresso(horario, sala->getFileira(i)->getAssento(j));
 }
-/*
-Sessao(const Sessao &s)
+
+Sessao::~Sessao()
 {
-  encerrada = s.encerrada;
-  numVendido = s.numVendido;
+	for (int i = 0; i < sala->getCapacidade()*sala->getQtdAssentos(); i++)
+		delete ingressos[i];
+
+	delete [] ingressos;
 }
-*/
+
 void Sessao::setStatus(bool encerrada)
 {
   Sessao::encerrada = encerrada;
 }
 
-int Sessao::getStatus()
+bool Sessao::getStatus()
 {
   return encerrada;
 }
 
-// posicionador usado para inserir um horario na primeira posicao
-bool Sessao::setHorario(Horario* horario, Horario anterior, Horario atual)
-{ 
-  // posicionador para posicao valida, achei o anterior ou ele nao existe
-  for(int i = 0; i < qtdHorarios && anterior != horario[i]; i++)
-  
-  if (i != qtdHorarios)
-  {
-    horario[i] = atual;
-
-    return true;
-  }
-
-  else
-	setHorario(horario);
-
-  return false;
+void Sessao::setHorario(Horario _horario)
+{
+	horario = _horario;
 }
 
-void Sessao::setHorario(Horario* horario)
+Horario Sessao::getHorario()
 {
-    if (qtdHorarios < maxHorarios)
-    {
-      horarios[qtdHorarios] = horario;
-      qtdHorarios++;
-    }
+	return horario;
 }
 
-Horario* Sessao::getHorarios()
+Ingresso* Sessao::getIngresso(char idFileira, int idAssento)
 {
-  Horario *retorno = new Horario[maxHorarios];
-
-  // copia todos os horarios desta sessao
-  for (int i = 0; i < qtdHorarios; i++)
-      retorno[i] = horarios[i];
-  // o retorno de um vetor auxiliar eh utilizado para nao quebrar o encapsulamento
-  return retorno;
+	return ingressos[sala->getQtdAssentos() * ((int)idFileira-'A') + (idAssento-1)];
 }
 
 // altera o numero de ingressos vendidos
@@ -80,5 +63,3 @@ int Sessao::getNumVendido()
 {
   return numVendido;
 }
-
-

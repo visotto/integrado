@@ -4,38 +4,38 @@
 #include <iostream>
 #include "../headers/consts.h"
 #include "../headers/sala.h"
+#include "../headers/horario.h"
+#include "../headers/filme.h"
+#include "../headers/ingresso.h"
 
 using std::string;
-
-typedef struct _horario
-{
-  int horas;
-  int minutos;
-} Horario;
 
 class Sessao
 {
   private:
-    Horario *horarios; // uma sessao possui varios horarios
-    int qtdHorarios;
+    Horario horario;
     bool encerrada;
     int numVendido;
     Filme *filme; // uma sessao conhece um filme
     Sala *sala; // uma sessao conhece uma sala 
+	Ingresso **ingressos; // uma sessao possui ingressos relativos a ela
+	int qtdIngressos;
 
   public:
-    Sessao(Sala *_sala, bool _encerrada, int _numVendido, Filme *_filme);
-    Sessao(const Sessao &s);
+    Sessao(Sala *_sala, Horario _horario, Filme *_filme);
+	~Sessao();
 
     void setStatus(bool encerrada);
-    int getStatus();
+    bool getStatus();
 
-    void setHorario(Horario* horario); // para adicionar todos os horarios
-    bool setHorario(Horario* horario, Horario anterior, Horario atual); // para alterar um horario
-    Horario* getHorarios(); // retorna o vetor de horarios
+    void setHorario(Horario _horario);
+    Horario getHorario();
 
-    void incNumVendido(int numVendido);
+	Ingresso* getIngresso(char idFileira, int idAssento);
+
+    void incNumVendido(char opcao);
     int getDisponivel();
+	int getNumVendido();
 
 };
 

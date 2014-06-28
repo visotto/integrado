@@ -19,7 +19,6 @@ class Sala
 
   public:
     Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos);
-    Sala(const Sala &s);
 	~Sala();
 
     int getNumSala();

@@ -7,13 +7,6 @@ Assento::Assento(int _idAssento, bool _disponibilidade, char _idFileira)
   idFileira = _idFileira;
 }
 
-Assento::Assento(const Assento &a) // construtor de copia FUTURO
-{
-  idAssento = a.idAssento;
-  disponibilidade = a.disponibilidade;
-  idFileira = a.idFileira;
-}
-
 void Assento::setDisponibilidade(bool _disponibilidade)
 {
   disponibilidade = _disponibilidade;
