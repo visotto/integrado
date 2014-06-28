@@ -71,6 +71,9 @@ GerenciaSala::GerenciaSala()
 		if(_situacao == "manuGeral")
 			s = manuGeral;
 	
+		if(_situacao == "alocada")
+		   s = alocada;
+
 
 		// Aloca a classe armazenada no arquivo
 		salas[k] = new Sala(_numSala, _capacidade, s, _qtdAssentos);
@@ -111,10 +114,10 @@ void GerenciaSala::criarSala()
 		cin >> capacidade;
 		cout << "Digite a quantidade de assentos em cada fileira: ";
 		cin >> qtdAssentos;
-		cout << "Digite a situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
+		cout << "Digite a situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3, alocada = 4): ";
 		cin >> situacao;
 
-		if (situacao < 0 || situacao > 3)
+		if (situacao < 0 || situacao > 4)
 			throw "\nSituacao da sala invalida!\n";
 
 		Situacao s = static_cast <Situacao> (situacao);
@@ -219,7 +222,7 @@ void GerenciaSala::editarSala()
 	for (i = 0; i < qtdSalas; i++)
 		if (salas[i]->getNumSala() == id)
 		{
-			cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3): ";
+			cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3, alocada = 4): ";
 			cin >> _situacao;
 
 			Situacao s = static_cast <Situacao> (_situacao);

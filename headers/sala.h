@@ -6,7 +6,7 @@
 
 using std::string;
 
-enum Situacao {disponivel, manuEquipamento, reforma, manuGeral};
+enum Situacao {disponivel, manuEquipamento, reforma, manuGeral, alocada};
 
 class Sala
 {

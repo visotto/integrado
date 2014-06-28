@@ -58,6 +58,9 @@ std::string Sala::getSituacao()
 
 		case manuGeral:
 			return "manuGeral";
+
+		case alocada:
+			return "alocada";
 	}
 }
 

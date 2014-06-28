@@ -7,16 +7,13 @@ using std::string;
 class Filme
 {
   private:
-	Filme *filme;
-	int qtdFilmes
     string tituloFilme;
     int fxetaria;
     char idioma;  //L - legendado; D -  dublado; N - nacional
 
 
   public:
-    Filme();
-    Filme(const Sessao &s);
+    Filme(string _tituloFilme, int _fxetaria, char _idioma);
     ~Filme();
 
     void setTituloFilme(string _filme);

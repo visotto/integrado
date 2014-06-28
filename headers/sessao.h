@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../headers/consts.h"
+#include "../headers/sala.h"
 
 using std::string;
 
@@ -15,25 +16,25 @@ typedef struct _horario
 class Sessao
 {
   private:
-    Horario *horarios;
+    Horario *horarios; // uma sessao possui varios horarios
     int qtdHorarios;
     bool encerrada;
     int numVendido;
-    Filme f;
-    Sala *sala; 
+    Filme *filme; // uma sessao conhece um filme
+    Sala *sala; // uma sessao conhece uma sala 
 
   public:
-    Sessao(bool _encerrada, int _numVendido, string _filme);
+    Sessao(Sala *_sala, bool _encerrada, int _numVendido, Filme *_filme);
     Sessao(const Sessao &s);
 
-    void setStatus(bool encerrada); // modifica o status da sessao: 1 = encerrada, 0 caso contrario
+    void setStatus(bool encerrada);
     int getStatus();
 
     void setHorario(Horario* horario); // para adicionar todos os horarios
     bool setHorario(Horario* horario, Horario anterior, Horario atual); // para alterar um horario
     Horario* getHorarios(); // retorna o vetor de horarios
 
-    void setNumVendido(int numVendido);
+    void incNumVendido(int numVendido);
     int getDisponivel();
 
 };

@@ -1,19 +1,23 @@
 #include "../headers/sessao.h"
 #include "../headers/consts.h"
 
-Sessao(bool _encerrada, int _numVendido)
+Sessao::Sessao(Sala *_sala, bool _encerrada, int _numVendido, Filme *_filme)
 {
+  sala = _sala;	
   horarios = new Horario[maxHorarios];
+  qtdHorarios = 0;
   encerrada = _encerrada;
   numVendido = _numVendido;
+  filme = _filme;
+  numVendido = 0;
 }
-
+/*
 Sessao(const Sessao &s)
 {
   encerrada = s.encerrada;
   numVendido = s.numVendido;
 }
-
+*/
 void Sessao::setStatus(bool encerrada)
 {
   Sessao::encerrada = encerrada;
@@ -34,17 +38,20 @@ bool Sessao::setHorario(Horario* horario, Horario anterior, Horario atual)
   {
     horario[i] = atual;
 
-    return 1;
+    return true;
   }
 
-  return 0;
+  else
+	setHorario(horario);
+
+  return false;
 }
 
-void Sessao::setHorario()
+void Sessao::setHorario(Horario* horario)
 {
     if (qtdHorarios < maxHorarios)
     {
-      Sessao::horarios[qtdHorarios] = horario;
+      horarios[qtdHorarios] = horario;
       qtdHorarios++;
     }
 }
@@ -56,14 +63,17 @@ Horario* Sessao::getHorarios()
   // copia todos os horarios desta sessao
   for (int i = 0; i < qtdHorarios; i++)
       retorno[i] = horarios[i];
-  // o retorno de um veotr auxiliar eh utilizado para nao quebrar o encapsulamento
+  // o retorno de um vetor auxiliar eh utilizado para nao quebrar o encapsulamento
   return retorno;
 }
 
 // altera o numero de ingressos vendidos
-void Sessao::setNumVendido(int numVendido)
+void Sessao::incNumVendido(char opcao) //disparado toda vez que uma venda eh realizada
 {
-  Sessao::numVendido = numVendido;
+	if (opcao == '+') //addIngresso
+  		numVendido++;
+	if(opcao == '-')	//removeIngresso
+		numVendido--;
 }
 
 int Sessao::getNumVendido()

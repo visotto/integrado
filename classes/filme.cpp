@@ -1,15 +1,11 @@
 #include "../headers/filme.h"
 
-Filme()
+Filme::Filme(string _tituloFilme, int _fxetaria, char _idioma)
 {
-	filme = new Filme[qtdFilmes];  
+	tituloFilme = _tituloFilme;
+	fxetaria = _fxetaria;
+	idioma = _idioma;
 }
-
-Filme(const Filme &s)
-{
-	
-}
-
 
 void Filme::setTituloFilme(string _tituloFilme)
 {

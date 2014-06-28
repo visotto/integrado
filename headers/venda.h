@@ -2,6 +2,7 @@
 #define VENDA_H
 
 #include <iostream>
+#include "../headers/consts.h"
 
 enum FormaPagto{dinheiro, cartao};
 
@@ -10,8 +11,9 @@ class Venda{
     Date dtVenda;
     double valorTotal;
     FormaPagto formaPagto;
-    Ingresso **ingressos;
-    Sessao **sessao; // atualiza disponibilidade
+    Ingresso **ingressos; // vetor de ponteiros para ingressos
+	int qtdIngressos;
+    Sessao *sessao; // atualiza disponibilidade
   
   public:
     Venda(Date _dtVenda, double _valorTotal, FormaPagto _formaPagto);
