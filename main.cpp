@@ -3,7 +3,10 @@
 #include "headers/gerenciasala.h"
 #include "headers/gerenciafilme.h"
 #include "headers/gerenciasessao.h"
+<<<<<<< HEAD
 #include "headers/gerenciavenda.h"
+=======
+>>>>>>> FETCH_HEAD
 
 using std::cout;
 using std::cin;
@@ -259,6 +262,7 @@ void gerenciadorDeSessoes(GerenciaSessao &g)
   }
 }
 
+<<<<<<< HEAD
 void gerenciadorDeVendas(GerenciaVenda &g)
 {
   int opcao;
@@ -346,11 +350,91 @@ void gerenciadorDeVendas(GerenciaVenda &g)
      }
   }
 
+=======
+void gerenciadorDeSessoes(GerenciaSessao &se)
+{
+	int opcao;
+
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Sessao" << endl;
+		cout << "2. Remover Sessao" << endl;
+		cout << "3. Buscar Sessao" << endl;
+		cout << "4. Editar Sessao" << endl;
+		cin >> opcao;
+
+		switch (opcao){
+		  case 0:
+			return;
+
+		  case 1:
+				try
+				{
+			  		se.criarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar a sessao!" << endl;
+				}
+
+			    break;
+
+		  case 2:
+				try
+				{
+					se.removerSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+			    break;
+
+		  case 3:
+				try
+				{
+					se.buscarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
+		  case 4:
+				try
+				{
+					se.editarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+ 			    break;
+
+		 }
+	}
+>>>>>>> FETCH_HEAD
 }
 
 
 void ativarCinema()
 {
+<<<<<<< HEAD
   int opcao;
   GerenciaSala s;
   GerenciaFilme f;
@@ -388,6 +472,39 @@ void ativarCinema()
 
     }
   }
+=======
+	int opcao;
+	GerenciaSala s;
+	GerenciaFilme f;
+	GerenciaSessao se(&s,&f);
+
+	while (1)
+	{
+		cout << "Escolha um menu:" << endl;
+		cout << "0. Sair do programa" << endl;
+		cout << "1. Gerenciar salas" << endl;
+		cout << "2. Gerenciar filmes" << endl;
+		cout << "3. Gerenciar sessoes" << endl;
+		cin >> opcao;
+
+		switch(opcao)
+		{
+			case 0:
+				return;
+
+			case 1:
+				gerenciadorDeSalas(s);
+				break;
+			case 2:
+				gerenciadorDeFilmes(f);
+				break;
+			case 3:
+				gerenciadorDeSessoes(se);
+			break;
+
+		}
+	}
+>>>>>>> FETCH_HEAD
 }
 
 int main(int argc, char *argv[]) {

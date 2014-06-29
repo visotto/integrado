@@ -11,9 +11,15 @@ Sessao::Sessao(Sala *_sala, int _id, Horario _horario, Filme *_filme)
   numVendido = 0;
   ingressos = new Ingresso*[sala->getCapacidade()*sala->getQtdAssentos()];
 
+<<<<<<< HEAD
   for (int i = 0; i < sala->getCapacidade(); i++)
     for (int j = 0; j < sala->getQtdAssentos(); j++)
       ingressos[sala->getQtdAssentos()*i + j] = new Ingresso(horario, sala->getFileira(i)->getAssento(j));
+=======
+	for (int i = 0; i < sala->getCapacidade(); i++)
+		for (int j = 0; j < sala->getQtdAssentos(); j++)
+			ingressos[sala->getQtdAssentos()*i + j] = new Ingresso(horario, sala->getFileira(i)->getAssento(j));
+>>>>>>> FETCH_HEAD
 }
 
 Sessao::~Sessao()
@@ -64,6 +70,7 @@ int Sessao::getNumVendido()
 }
 
 int Sessao::getQueryID(){
+<<<<<<< HEAD
   return id;
 }
 
@@ -76,3 +83,18 @@ Filme* Sessao::getFilme()
 {
   return filme;
 }
+=======
+	return id;
+}
+
+Sala* Sessao::getSala()
+{
+	return sala;
+}
+
+Filme* Sessao::getFilme()
+{
+	return filme;
+}
+
+>>>>>>> FETCH_HEAD

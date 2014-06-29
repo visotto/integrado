@@ -40,8 +40,14 @@ class Sessao
 
     int getQueryID();
 
+<<<<<<< HEAD
     Sala* getSala();
     Filme* getFilme();
+=======
+	Sala* getSala();
+	Filme* getFilme();
+
+>>>>>>> FETCH_HEAD
 };
 
 #endif // SESSAO_H

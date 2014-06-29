@@ -34,3 +34,21 @@ stringstream &operator>>(stringstream &s, Horario &h)
 
   return s;
 }
+
+istream &operator>>(istream &i, Horario &h)
+{
+	i >> h.hora; 
+	i.ignore(1); //Ignora o ':'
+	i >> h.minuto;
+
+	return i;
+}
+
+stringstream &operator>>(stringstream &s, Horario &h)
+{
+	s >> h.hora; 
+	s.ignore(1); //Ignora o ':'
+	s >> h.minuto;
+
+	return s;
+}

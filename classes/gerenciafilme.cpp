@@ -70,7 +70,11 @@ GerenciaFilme::GerenciaFilme()
 			
 			// Aloca o filme k armazenado no arquivo
 			filmes.insere(filmes.getEndRaiz(), Filme(_tituloFilme, _fxEtaria, _idioma));
+<<<<<<< HEAD
 			getline(leitura,leituraLinha);
+=======
+			
+>>>>>>> FETCH_HEAD
 			k++;
 		}
 	}
@@ -105,6 +109,7 @@ void GerenciaFilme::criarFilme()
 		{
 			cout << "Digite a faixa etaria do filme: ";
 			cin >> fxEtaria;			
+<<<<<<< HEAD
 			if(fxEtaria < 0 || fxEtaria > 18)
 				throw "\nFaixa etaria invalida!\n";
 		
@@ -115,6 +120,13 @@ void GerenciaFilme::criarFilme()
 
 			filmes.insere(filmes.getEndRaiz(), Filme(tituloFilme, fxEtaria, idioma));
 
+=======
+			cout << "Digite o idioma do filme (L=legendado, D=dublado, N=nacional): ";
+			cin >> idioma;
+
+			filmes.insere(filmes.getEndRaiz(), Filme(tituloFilme, fxEtaria, idioma));
+
+>>>>>>> FETCH_HEAD
 			cout << "\nFilme criado com sucesso!\n" << endl;
 			qtdFilmes++;
 		}
@@ -225,12 +237,17 @@ void GerenciaFilme::editarFilme()
 		filmes.setRaiz(filmes.remove(filmes.getRaiz(), compara));
 		cout << "Digite a nova faixa etaria do filme: ";
 		cin >> fxEtaria;
+<<<<<<< HEAD
 		if(fxEtaria < 0 || fxEtaria > 18)
 			throw "\nFaixa etaria invalida!\n";
 		cout << "Digite o novo idioma do filme: ";
 		cin >> idioma;
 		if(idioma != 'L' && idioma != 'D' && idioma != 'N')
 			throw "\nIdioma invalido!\n";
+=======
+		cout << "Digite o novo idioma do filme: ";
+		cin >> idioma;
+>>>>>>> FETCH_HEAD
 		filmes.insere(filmes.getEndRaiz(), Filme(compara.getTituloFilme(), fxEtaria, idioma));
 		cout << "Filme editado com sucesso!" << endl;
 

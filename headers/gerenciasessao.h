@@ -10,10 +10,27 @@
 
 class GerenciaSessao{
   private:
+<<<<<<< HEAD
     int qtdSessoes;
     Sessao *sessoes[MAX_SESSOES];
     GerenciaSala *gerencSala;
     GerenciaFilme *gerencFilme; 
+=======
+	int qtdSessoes;
+	Sessao *sessoes[MAX_SESSOES];
+  	void escreverSessao(); // funcao para escrever no arquivo sessoes.data as salas cadastradas
+	GerenciaSala *gerencSala;
+	GerenciaFilme *gerencFilme;	
+
+  public:
+	GerenciaSessao(GerenciaSala *g, GerenciaFilme *f);
+	/* ------ CRUD ------- */            
+    void criarSessao(); // retorna true se criou com sucesso
+	void removerSessao(); // retorna true se removeu com sucesso
+	void buscarSessao();  
+	void editarSessao(); 
+	/* ------------------- */
+>>>>>>> FETCH_HEAD
 
   public:
     GerenciaSessao(GerenciaSala *g, GerenciaFilme *f);
