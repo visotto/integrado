@@ -126,10 +126,12 @@ void GerenciaSala::criarSala()
 
 		for (i = 0; i < qtdSalas; i++)
 			if (numSala == salas[i]->getNumSala())
-				throw "\nJa existe uma sala com este numero\n";
+				throw "\nJa existe uma sala com este numero!\n";
 
-		cout << "Digite a capacidade da sala (quantidade de fileiras na sala): ";
+		cout << "Digite a capacidade da sala (quantidade de fileiras na sala - max 26): ";
 		cin >> capacidade;
+		if (capacidade < 0 || capacidade > 26)
+			throw "\nCapacidade invalida!\n";
 		cout << "Digite a quantidade de assentos em cada fileira: ";
 		cin >> qtdAssentos;
 		cout << "Digite a situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3, alocada = 4): ";
@@ -227,6 +229,22 @@ void GerenciaSala::buscarSala()
 	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
 }
 
+Sala* GerenciaSala::buscarSala(int _id)
+{
+	if (!qtdSalas)
+		throw "\nNao existem salas cadastradas!\n";
+
+	int i;
+	
+	for (i = 0; i < qtdSalas; i++)
+		if (salas[i]->getNumSala() == _id)
+		{
+			return salas[i];
+		}
+
+	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
+}
+
 void GerenciaSala::editarSala()
 {
 	if (!qtdSalas)
@@ -242,6 +260,9 @@ void GerenciaSala::editarSala()
 		{
 			cout << "Digite a nova situacao da sala (disponivel = 0, manuEquipamento = 1, reforma = 2, manuGeral = 3, alocada = 4): ";
 			cin >> _situacao;
+
+			if (_situacao < 0 || _situacao > 4)
+				throw "\nSituacao da sala invalida!\n";
 			
 			Situacao s = static_cast <Situacao> (_situacao);
 			salas[i]->setSituacao(s);
@@ -280,8 +301,6 @@ void GerenciaSala::escreverSala(){
 				salas[i]->getFileira(j)->getAssento(k)->getDisponibilidade() ? escreve << "S" : escreve << "N";
 		escreve << "\n";
 		}
-
-
 	}
 	escreve.close();	
 }

@@ -4,7 +4,6 @@ Ingresso::Ingresso(Horario _horaIngresso, Assento *_assento)
 {
 	horaIngresso = _horaIngresso;
 	assento = _assento;
-	std::cout << "Contruindo um ingresso no assento " << assento->getIdFileira() << assento->getIdAssento() << std::endl;
 }
 
 bool Ingresso::isVendido()
@@ -22,9 +21,17 @@ Horario Ingresso::getHorario()
 	return horaIngresso;
 }
 
-Tipo Ingresso::getTipo()
+string Ingresso::getTipo()
 {
-	return tipo;
+	if (tipo == inteiro)
+		return "inteiro";
+	else
+		return "meia";
+}
+
+void Ingresso::setTipo(Tipo t)
+{
+	tipo = t;
 }
 
 Assento* Ingresso::getAssento()

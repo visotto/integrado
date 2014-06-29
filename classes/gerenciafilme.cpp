@@ -9,10 +9,6 @@ using namespace std;
 
 GerenciaFilme::GerenciaFilme()
 {	
-	int i;
-	
-	for (i = 0; i < MAX_FILMES; i++)
-		filmes[i] = NULL;
 	qtdFilmes = 0;
 
 	// Variavel para leitura do arquivo
@@ -73,8 +69,8 @@ GerenciaFilme::GerenciaFilme()
 			_idioma = leituraLinha[0];
 			
 			// Aloca o filme k armazenado no arquivo
-			filmes[k] = new Filme(_tituloFilme, _fxEtaria, _idioma);
-			
+			filmes.insere(filmes.getEndRaiz(), Filme(_tituloFilme, _fxEtaria, _idioma));
+			getline(leitura,leituraLinha);
 			k++;
 		}
 	}
@@ -94,21 +90,34 @@ void GerenciaFilme::criarFilme()
 		cout << "Digite o titulo do filme: ";
 		cin.ignore();		
 		getline(cin, tituloFilme);
+
+		// apenas para usar na funcao busca
+		Filme compara(tituloFilme, 0, '0');		
+
+		try
+		{
+			filmes.busca(filmes.getRaiz(), compara); // aqui ira ocorrer excecao se nao ha filme com o titulo buscado, entao podemos criar
+			cout << "\nJa existe um filme com esse titulo!\n";
+		}
+
+		// caso nao haja filme com este titulo
+		catch (char const *s)
+		{
+			cout << "Digite a faixa etaria do filme: ";
+			cin >> fxEtaria;			
+			if(fxEtaria < 0 || fxEtaria > 18)
+				throw "\nFaixa etaria invalida!\n";
 		
-		for (int i = 0; i < qtdFilmes; i++)
-			if (tituloFilme.compare(filmes[i]->getTituloFilme()) == 0)
-				throw "\nJa existe um filme com esse titulo!\n";
+			cout << "Digite o idioma do filme (L=legendado, D=dublado, N=nacional): ";
+			cin >> idioma;
+			if(idioma != 'L' && idioma != 'D' && idioma != 'N')
+				throw "\nIdioma invalido!\n";
 
-		cout << "Digite a faixa etaria do filme: ";
-		cin >> fxEtaria;
-		cout << "Digite o idioma do filme (L=legendado, D=dublado, N=nacional): ";
-		cin >> idioma;
+			filmes.insere(filmes.getEndRaiz(), Filme(tituloFilme, fxEtaria, idioma));
 
-		filmes[qtdFilmes] = new Filme(tituloFilme, fxEtaria, idioma);
-
-		cout << "\nFilme criado com sucesso!\n" << endl;
-		qtdFilmes++;
-
+			cout << "\nFilme criado com sucesso!\n" << endl;
+			qtdFilmes++;
+		}
 
 		// Chama funcao para escrever novo filme no arquivo filmes.data
 		escreverFilme();
@@ -128,21 +137,24 @@ void GerenciaFilme::removerFilme()
 	cout << "Digite o titulo do filme que deseja remover: ";
 	cin.ignore();		
 	getline(cin, id);
-		
-	for (i = 0; i < qtdFilmes; i++)
-		if (id.compare(filmes[i]->getTituloFilme()) == 0)
-		{
-			qtdFilmes--;
-			*filmes[i] = *filmes[qtdFilmes]; // movemos o ultimo filme para o lugar do filme que foi removido
-			filmes[qtdFilmes] = NULL; // e fazemos a ultima posicao apontar para null para evitar duplicacao
-			cout << "\nFilme removido com sucesso!\n" << endl;
-			
-			// Chama funcao para reescrever os filmes atuais no arquivo filmes.data
-			escreverFilme();
-			return;
-		}
 
-	throw "\nNao existe um filme com este titulo!\n"; // so entra aqui se nao entrou no if e nao fez a remocao
+	// apenas para usar na funcao busca
+	Filme compara(id, 0, '0');
+
+	try
+	{
+		compara = filmes.busca(filmes.getRaiz(), compara); // aqui ira ocorrer excecao se nao ha filme com o titulo buscado
+		filmes.setRaiz(filmes.remove(filmes.getRaiz(), compara));
+		cout << "\nFilme removido com sucesso!\n" << endl;
+		qtdFilmes--;
+
+		// Chama funcao para reescrever os filmes atuais no arquivo filmes.data
+		escreverFilme();
+	}
+	catch(...)
+	{
+		throw "\nNao existe um filme com este titulo!\n";
+	}
 }
 
 void GerenciaFilme::buscarFilme()
@@ -153,19 +165,41 @@ void GerenciaFilme::buscarFilme()
 	string id;
 	int i;
 	cout << "Digite o titulo do filme que deseja buscar: ";
-	cin.ignore();		
+	cin.ignore();
 	getline(cin, id);
-		
-	for (i = 0; i < qtdFilmes; i++)
-		if (id.compare(filmes[i]->getTituloFilme()) == 0)
-		{
-			cout << "Filme " << id << ": " << endl;
-			cout << "Faixa etaria: " << filmes[i]->getFxEtaria() << endl;
-			cout << "Idioma: " << filmes[i]->getIdioma() << endl;
-			return;
-		}
 
-	throw "\nNao existe um filme com este titulo!\n"; // so entra aqui se nao encontrou o filme
+	// apenas para usar na funcao busca
+	Filme compara(id, 0, '0');
+
+	try
+	{
+		compara = filmes.busca(filmes.getRaiz(), compara); // aqui ira ocorrer excecao se nao ha filme com o titulo buscado
+		cout << compara << endl;
+	}
+	catch(...)
+	{
+		throw "\nNao existe um filme com este titulo!\n";
+	}
+}
+
+Filme* GerenciaFilme::buscarFilme(string _tituloFilme)
+{
+	if (!qtdFilmes)
+		throw "\nNao existem filmes cadastrados!\n";
+
+	// apenas para usar na funcao busca
+	Filme compara(_tituloFilme, 0, '0');
+
+	try
+	{
+		Filme *novo = new Filme(" ", 0, '0');
+		*novo = filmes.busca(filmes.getRaiz(), compara); // aqui ira ocorrer excecao se nao ha filme com o titulo buscado
+		return novo;
+	}
+	catch(...)
+	{
+		throw "\nNao existe um filme com este titulo!\n";
+	}
 }
 
 void GerenciaFilme::editarFilme()
@@ -179,39 +213,43 @@ void GerenciaFilme::editarFilme()
 	char idioma;
 		
 	cout << "Digite o titulo do filme que deseja atualizar: ";
-	cin >> id;
+	cin.ignore();
+	getline(cin, id);
 
-	for (i = 0; i < qtdFilmes; i++)
-		if (id.compare(filmes[i]->getTituloFilme()) == 0)
-		{
-			cout << "Digite a nova faixa etaria do filme: ";
-			cin >> fxEtaria;
-			filmes[i]->setFxEtaria(fxEtaria);
+	// apenas para usar na funcao busca
+	Filme compara(id, 0, '0');
 
-			cout << "Digite o novo idioma do filme (L=legendado, D=dublado, N=nacional): ";
-			cin >> idioma;
-			filmes[i]->setIdioma(idioma);
+	try
+	{
+		compara = filmes.busca(filmes.getRaiz(), compara); // aqui ira ocorrer excecao se nao ha filme com o titulo buscado
+		filmes.setRaiz(filmes.remove(filmes.getRaiz(), compara));
+		cout << "Digite a nova faixa etaria do filme: ";
+		cin >> fxEtaria;
+		if(fxEtaria < 0 || fxEtaria > 18)
+			throw "\nFaixa etaria invalida!\n";
+		cout << "Digite o novo idioma do filme: ";
+		cin >> idioma;
+		if(idioma != 'L' && idioma != 'D' && idioma != 'N')
+			throw "\nIdioma invalido!\n";
+		filmes.insere(filmes.getEndRaiz(), Filme(compara.getTituloFilme(), fxEtaria, idioma));
+		cout << "Filme editado com sucesso!" << endl;
 
-			cout << "Filme atualizado com sucesso" << endl;
-		
-			// Chama funcao para reescrever os filmes atuais no arquivo filmes.data
-			escreverFilme();
-			return;
-		}
-
-	throw "\nNao existe um filme com este titulo!\n"; // so entra aqui se nao encontrou o filme
+		// Chama funcao para escrever novo filme no arquivo filmes.data
+		escreverFilme();
+	}
+	catch(...)
+	{
+		throw "\nNao existe um filme com este titulo!\n";
+	}
 }
 
 void GerenciaFilme::listarFilmes()
 {
-	cout << "Lista de filmes cadastrados" << endl;
-
 	if (!qtdFilmes)
 		throw "\nNao existem filmes cadastrados!\n";
 
-	for (int i = 0; i < MAX_FILMES; i++)
-		if (filmes[i] != NULL)
-			cout << filmes[i]->getTituloFilme() << endl;
+	cout << "Lista de filmes cadastrados:" << endl;
+	filmes.listar(cout, filmes.getRaiz());
 
 }
 
@@ -225,12 +263,8 @@ void GerenciaFilme::escreverFilme(){
 	char aux; // Variavel para gravar o valor de qtdFilmes no arquivo para leituras futuras
 	
 	escreve << qtdFilmes << "\n";
-	for(i = 0; i < qtdFilmes && filmes[i] != NULL; i++){	
-		// Escreve no arquivo filmes.data
-		escreve << filmes[i]->getTituloFilme() << "\n";
-		escreve << filmes[i]->getFxEtaria() << "\n";
-		escreve << filmes[i]->getIdioma() << "\n";
-	}
 
+	// escreve os filmes no arquivo
+	filmes.listar(escreve, filmes.getRaiz());
 	escreve.close();	
 }

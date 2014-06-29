@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -31,7 +32,8 @@ class Arvore {
     // CRUD
     bool insere(No<T> **r, T chave);
     No<T>* remove(No<T>* r, T chave);
-    void listar(No<T> *r);
+    void listar(ofstream &o, No<T> *r);
+    void listar(ostream &o, No<T> *r);
     T busca(No<T> *r, T chave);
 };
 
@@ -99,12 +101,22 @@ No<T>** Arvore<T>::getEndRaiz()
 }
 
 template <class T>
-void Arvore<T>::listar(No<T> *r)
+void Arvore<T>::listar(ofstream &o, No<T> *r)
 {
   if (r != NULL) {
-    listar(r->esq);
-    cout << r->info << endl;
-    listar(r->dir);
+    listar(o, r->esq);
+    o << r->info << endl;
+    listar(o, r->dir);
+  }
+}
+
+template <class T>
+void Arvore<T>::listar(ostream &o, No<T> *r)
+{
+  if (r != NULL) {
+    listar(o, r->esq);
+    o << r->info << endl;
+    listar(o, r->dir);
   }
 }
 

@@ -8,20 +8,19 @@
 
 class GerenciaSala{
   private:
-	int qtdSalas;
-	Sala *salas[MAX_SALAS];
-  	void escreverSala(); // funcao para escrever no arquivo salas.data as salas cadastradas
-	
+    int qtdSalas;
+    Sala *salas[MAX_SALAS];
 
   public:
-	GerenciaSala();
-	/* ------ CRUD ------- */            
+    GerenciaSala();
+    /* ------ CRUD ------- */            
     void criarSala(); // retorna true se criou com sucesso
-	void removerSala(); // retorna true se removeu com sucesso
-	void buscarSala();  
-	void editarSala(); 
-	/* ------------------- */
-
+    void removerSala(); // retorna true se removeu com sucesso
+    void buscarSala();
+    Sala* buscarSala(int _id);  
+    void editarSala(); 
+    /* ------------------- */
+    void escreverSala(); // funcao para escrever no arquivo salas.data as salas cadastradas
 };
 
 #endif // GERENCIASALA_H

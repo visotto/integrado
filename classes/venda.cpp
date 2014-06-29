@@ -9,8 +9,6 @@ Venda::Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto)
 	sessao = _sessao;
 	formaPagto = _formaPagto;
 
-	cout << "Contruindo uma venda" << endl;
-
 	ingressos = new Ingresso*[MAX_INGRESSOS];
 
 	for (int i = 0; i < MAX_INGRESSOS; i++)
@@ -41,17 +39,17 @@ double Venda::calcularValorTotal()
 
 void Venda::emitirIngresso(Ingresso *ingresso)
 {
-	cout << "Emitindo ingresso..." << endl;
-	cout << "======================" << endl;
+	cout << "==============================" << endl;
+	cout << "| Filme:\t" << sessao->getFilme()->getTituloFilme() << endl;
 	cout << "| Horario:\t" << ingresso->getHorario() << endl;
-    cout << "| Valor:\t" << ingresso->getValor() << endl;
-    cout << "| Tipo:\t" << ingresso->getTipo() << endl;
+    cout << "| Valor:\t" << "R$ " << fixed << setprecision(2) << ingresso->getValor() << endl;
+    cout << "| Tipo:\t\t" << ingresso->getTipo() << endl;
 	cout << "| Poltrona:\t" << ingresso->getAssento()->getIdFileira() << ingresso->getAssento()->getIdAssento() << endl;
-	cout << "======================" << endl;
+	cout << "==============================" << endl;
 			 					
 }
 
-void Venda::addIngresso(Ingresso *ingresso)
+void Venda::addIngresso(Ingresso *ingresso, double valor, Tipo tipo)
 {
 	if (qtdIngressos < MAX_INGRESSOS)
 	{
@@ -62,9 +60,10 @@ void Venda::addIngresso(Ingresso *ingresso)
 			{
 				ingressos[i] = ingresso; // Associa um ingresso a esta venda
 				ingressos[i]->venda(); // altera a disponibilidade do assento para indisponivel e o status do ingresso para vendido
+				ingressos[i]->setValor(valor);
+				ingressos[i]->setTipo(tipo);
 				qtdIngressos++;	// incrementa o numero de ingressos vendidos nesta venda
 				sessao->incNumVendido('+'); // incrementa o numero de ingressos vendido na sessao relativa a esta venda
-				cout << "ingresso vendido na poltrona " << ingressos[i]->getAssento()->getIdFileira() << ingressos[i]->getAssento()->getIdAssento() << endl;
 				return;
 			}
 		}
@@ -89,6 +88,32 @@ void Venda::removeIngresso(Ingresso *ingresso)
 	cout << "Este ingresso ainda nao foi vendido!" << endl;
 }
 
-int getQueryID(){
+int Venda::getQueryID(){
 	return id;
+}
+
+int Venda::getQtdIngressos()
+{
+	return qtdIngressos;
+}
+
+Sessao* Venda::getSessao()
+{
+	return sessao;
+}
+
+string Venda::getFormaPagto()
+{
+	if (formaPagto == dinheiro)
+		return "dinheiro";
+	else
+		return "cartao";
+}
+
+Ingresso* Venda::getIngresso(int id)
+{
+	if (id >= 0 && id < qtdIngressos)
+		return ingressos[id];
+	else
+		return NULL;
 }
