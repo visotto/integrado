@@ -40,6 +40,9 @@ class Sessao
 
 	int getQueryID();
 
+	Sala* getSala();
+	Filme* getFilme();
+
 };
 
 #endif // SESSAO_H

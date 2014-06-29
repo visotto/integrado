@@ -4,7 +4,6 @@ Ingresso::Ingresso(Horario _horaIngresso, Assento *_assento)
 {
 	horaIngresso = _horaIngresso;
 	assento = _assento;
-	std::cout << "Contruindo um ingresso no assento " << assento->getIdFileira() << assento->getIdAssento() << std::endl;
 }
 
 bool Ingresso::isVendido()

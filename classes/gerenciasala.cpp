@@ -227,6 +227,22 @@ void GerenciaSala::buscarSala()
 	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
 }
 
+Sala* GerenciaSala::buscarSala(int _id)
+{
+	if (!qtdSalas)
+		throw "\nNao existem salas cadastradas!\n";
+
+	int i;
+	
+	for (i = 0; i < qtdSalas; i++)
+		if (salas[i]->getNumSala() == _id)
+		{
+			return salas[i];
+		}
+
+	throw "\nNao existe uma sala com este id!\n"; // so entra aqui se nao encontrou a sala
+}
+
 void GerenciaSala::editarSala()
 {
 	if (!qtdSalas)

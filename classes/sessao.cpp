@@ -11,8 +11,6 @@ Sessao::Sessao(Sala *_sala, int _id, Horario _horario, Filme *_filme)
   numVendido = 0;
   ingressos = new Ingresso*[sala->getCapacidade()*sala->getQtdAssentos()];
 
-	std::cout << "Contruindo uma sessao do filme " << filme->getTituloFilme() << " que comeca as " << horario << std::endl;
-
 	for (int i = 0; i < sala->getCapacidade(); i++)
 		for (int j = 0; j < sala->getQtdAssentos(); j++)
 			ingressos[sala->getQtdAssentos()*i + j] = new Ingresso(horario, sala->getFileira(i)->getAssento(j));
@@ -65,7 +63,17 @@ int Sessao::getNumVendido()
   return numVendido;
 }
 
-int getQueryID(){
+int Sessao::getQueryID(){
 	return id;
+}
+
+Sala* Sessao::getSala()
+{
+	return sala;
+}
+
+Filme* Sessao::getFilme()
+{
+	return filme;
 }
 

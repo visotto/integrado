@@ -89,6 +89,6 @@ void Venda::removeIngresso(Ingresso *ingresso)
 	cout << "Este ingresso ainda nao foi vendido!" << endl;
 }
 
-int getQueryID(){
+int Venda::getQueryID(){
 	return id;
 }

@@ -18,7 +18,8 @@ class GerenciaSala{
 	/* ------ CRUD ------- */            
     void criarSala(); // retorna true se criou com sucesso
 	void removerSala(); // retorna true se removeu com sucesso
-	void buscarSala();  
+	void buscarSala();
+	Sala* buscarSala(int _id);  
 	void editarSala(); 
 	/* ------------------- */
 

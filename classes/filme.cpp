@@ -1,10 +1,20 @@
 #include "../headers/filme.h"
 
+using std::string;
+using std::endl;
+
 Filme::Filme(string _tituloFilme, int _fxetaria, char _idioma)
 {
 	tituloFilme = _tituloFilme;
 	fxetaria = _fxetaria;
 	idioma = _idioma;
+}
+
+Filme::Filme(const Filme &f)
+{
+	tituloFilme = f.tituloFilme;
+	fxetaria = f.fxetaria;
+	idioma = f.idioma;
 }
 
 void Filme::setTituloFilme(string _tituloFilme)
@@ -40,4 +50,32 @@ char Filme::getIdioma()
 string Filme::getQueryID()
 {
 	return tituloFilme;
+}
+
+bool Filme::operator<(Filme &f)
+{
+	return (getQueryID().compare(f.getQueryID()) < 0);
+}
+
+bool Filme::operator>(Filme &f)
+{
+	return (getQueryID().compare(f.getQueryID()) > 0);
+}
+
+bool Filme::operator==(Filme &f)
+{
+	return (getQueryID().compare(f.getQueryID()) == 0);
+}
+
+bool Filme::operator!=(Filme &f)
+{
+	return (getQueryID().compare(f.getQueryID()) != 0);
+}
+
+ostream & operator<<(ostream &o, const Filme &f)
+{
+	o << f.tituloFilme << "\n";
+	o << f.fxetaria << "\n";
+	o << f.idioma << "\n";
+	return o;
 }

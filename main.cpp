@@ -1,6 +1,9 @@
 #include <iostream>
+
 #include "headers/gerenciasala.h"
 #include "headers/gerenciafilme.h"
+#include "headers/gerenciasessao.h"
+
 using std::cout;
 using std::cin;
 using std::string;
@@ -83,6 +86,7 @@ void gerenciadorDeSalas(GerenciaSala &g)
 		 }
 	}
 }
+
 void gerenciadorDeFilmes(GerenciaFilme &g)
 {
 	int opcao;
@@ -175,11 +179,92 @@ void gerenciadorDeFilmes(GerenciaFilme &g)
 	}
 }
 
+void gerenciadorDeSessoes(GerenciaSessao &se)
+{
+	int opcao;
+
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Sessao" << endl;
+		cout << "2. Remover Sessao" << endl;
+		cout << "3. Buscar Sessao" << endl;
+		cout << "4. Editar Sessao" << endl;
+		cin >> opcao;
+
+		switch (opcao){
+		  case 0:
+			return;
+
+		  case 1:
+				try
+				{
+			  		se.criarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar a sessao!" << endl;
+				}
+
+			    break;
+
+		  case 2:
+				try
+				{
+					se.removerSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+			    break;
+
+		  case 3:
+				try
+				{
+					se.buscarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
+		  case 4:
+				try
+				{
+					se.editarSessao();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+ 			    break;
+
+		 }
+	}
+}
+
+
 void ativarCinema()
 {
 	int opcao;
 	GerenciaSala s;
 	GerenciaFilme f;
+	GerenciaSessao se(&s,&f);
 
 	while (1)
 	{
@@ -187,6 +272,7 @@ void ativarCinema()
 		cout << "0. Sair do programa" << endl;
 		cout << "1. Gerenciar salas" << endl;
 		cout << "2. Gerenciar filmes" << endl;
+		cout << "3. Gerenciar sessoes" << endl;
 		cin >> opcao;
 
 		switch(opcao)
@@ -200,6 +286,10 @@ void ativarCinema()
 			case 2:
 				gerenciadorDeFilmes(f);
 				break;
+			case 3:
+				gerenciadorDeSessoes(se);
+			break;
+
 		}
 	}
 }

@@ -5,11 +5,13 @@
 #include <iostream>
 #include "../headers/consts.h"
 #include "../headers/filme.h"
+#include "../headers/arvore.h"
 
 class GerenciaFilme{
   private:
 	int qtdFilmes;
-	Filme *filmes[MAX_FILMES];
+	Arvore<Filme> filmes;
+//	Filme *filmes[MAX_FILMES];
   	void escreverFilme(); // funcao para escrever no arquivo Filmes.data os Filmes cadastradas
 
   public:
@@ -18,10 +20,10 @@ class GerenciaFilme{
     void criarFilme(); // retorna true se criou com sucesso
 	void removerFilme(); // retorna true se removeu com sucesso
 	void buscarFilme();  
+	Filme* buscarFilme(string _tituloFilme);  
 	void editarFilme(); 
 	/* ------------------- */
 	void listarFilmes();
-
 };
 
 #endif // GERENCIAFILME_H

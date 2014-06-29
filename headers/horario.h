@@ -2,12 +2,17 @@
 #define HORARIO_H
 
 #include <iostream>
+#include <sstream>
 
 using std::ostream;
+using std::istream;
+using std::stringstream;
 
 class Horario
 {
 	friend ostream &operator<<(ostream &o, const Horario &h);
+	friend istream &operator>>(istream &i, Horario &h);
+	friend stringstream &operator>>(stringstream &s, Horario &h);
 
 	private:
 		int hora;
