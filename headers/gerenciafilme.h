@@ -11,7 +11,6 @@ class GerenciaFilme{
   private:
 	int qtdFilmes;
 	Arvore<Filme> filmes;
-//	Filme *filmes[MAX_FILMES];
   	void escreverFilme(); // funcao para escrever no arquivo Filmes.data os Filmes cadastradas
 
   public:

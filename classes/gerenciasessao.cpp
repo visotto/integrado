@@ -42,7 +42,7 @@ GerenciaSessao::GerenciaSessao(GerenciaSala *g, GerenciaFilme *f) : gerencSala(g
 	// Le do arquivo a quantidade de sessoes armazenadas
 	getline(leitura, leituraLinha);
   
-	// Veririca se arquivo esta vazio
+	// Veririfica se o arquivo esta vazio
 	if(leituraLinha != "")
 	{
 		//Temos agora uma string stream para processar a string leituraLinha;
@@ -68,13 +68,12 @@ GerenciaSessao::GerenciaSessao(GerenciaSala *g, GerenciaFilme *f) : gerencSala(g
 			// Le do arquivo o horario da sessao
 			getline(leitura, leituraLinha);
 			stringstream convertHorario(leituraLinha);
-			convertHorario >> _horario;				//stringstream é derivada de istream ? não precisa de sobrecarga do '>>' : precisa de sobrecarga do '>>'
+			convertHorario >> _horario;				
 
 			// Le do arquivo o titulo do filme da sessao
 			getline(leitura, leituraLinha);
 			_tituloFilme = leituraLinha;
-			//stringstream convertTituloFilme(leituraLinha);  	 	    
-  	 	    //convertTituloFilme >> _tituloFilme;
+
 
 			sala = gerencSala->buscarSala(_idSala);
 
@@ -87,7 +86,7 @@ GerenciaSessao::GerenciaSessao(GerenciaSala *g, GerenciaFilme *f) : gerencSala(g
 			for(i = 0; i < sessoes[k]->getSala()->getCapacidade(); i++){
 				getline(leitura, leituraLinha);
 				
-				for(j = 0; j < sessoes[k]->getSala()->getQtdAssentos(); j++){ //PILHA PILHA
+				for(j = 0; j < sessoes[k]->getSala()->getQtdAssentos(); j++){
 					if(leituraLinha[j] == 'S')
 						sessoes[k]->getSala()->getFileira(i)->getAssento(j)->setDisponibilidade(false);
 					else

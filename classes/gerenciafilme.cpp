@@ -37,7 +37,7 @@ GerenciaFilme::GerenciaFilme()
 	// Le do arquivo a quantidade de filmes armazenadas
 	getline(leitura, leituraLinha);
 
-	// Veririca se arquivo esta vazio
+	// Verifica se o arquivo esta vazio
 	if(leituraLinha != "")
 	{
 		//Temos agora uma string stream para processar a string leituraLinha;

@@ -43,7 +43,7 @@ char Fileira::getIdFileira()
 
 Assento* Fileira::getAssento(int idAssento)
 {
-	if (idAssento >= 0 && idAssento < qtdAssentos) // transformar em tratamento de erro FUTURO
+	if (idAssento >= 0 && idAssento < qtdAssentos)
 	{
 		return assentos[idAssento];
 	}

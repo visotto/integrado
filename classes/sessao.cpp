@@ -54,7 +54,7 @@ void Sessao::incNumVendido(char opcao) //disparado toda vez que uma venda eh rea
 {
 	if (opcao == '+') //addIngresso
   		numVendido++;
-	if(opcao == '-')	//removeIngresso
+	if(opcao == '-')  //removeIngresso
 		numVendido--;
 }
 

@@ -26,7 +26,7 @@ class Sala
 
 	int getQtdAssentos();
 	string getSituacao();
-	void setSituacao(Situacao _situacao); // Foi Adicionado essa pola, favor colocar no relatorio
+	void setSituacao(Situacao _situacao);
     
     void setCapacidade(int capacidade);
     int getCapacidade();

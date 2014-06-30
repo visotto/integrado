@@ -41,7 +41,7 @@ GerenciaSala::GerenciaSala()
 	getline(leitura, leituraLinha);
 
   
-	// Veririca se arquivo esta vazio
+	// Verifica se o arquivo esta vazio
 	if(leituraLinha != "")
 	{
 		//Temos agora uma string stream para processar a string leituraLinha;

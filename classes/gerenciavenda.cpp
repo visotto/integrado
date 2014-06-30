@@ -43,7 +43,7 @@ GerenciaVenda::GerenciaVenda(GerenciaSala *g1, GerenciaSessao *g2) : gerencSala(
 	// Le do arquivo a quantidade de vendas armazenadas
 	getline(leitura, leituraLinha);
   
-	// Veririca se arquivo esta vazio
+	// Verifica se o arquivo esta vazio
 	if(leituraLinha != "")
 	{
 		//Temos agora uma string stream para processar a string leituraLinha;

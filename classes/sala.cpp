@@ -1,5 +1,4 @@
 #include "../headers/sala.h"
-//using namespace std;
 Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos)
 {
   numSala = _numSala;
@@ -72,7 +71,7 @@ void Sala::setSituacao(Situacao _situacao){
 
 Fileira* Sala::getFileira(int idFileira)
 {
-	if (idFileira >= 0 && idFileira < capacidade) // transformar em tratamento de erro FUTURO
+	if (idFileira >= 0 && idFileira < capacidade)
 	{
 		return fileiras[idFileira];
 	}
