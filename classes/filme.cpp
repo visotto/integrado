@@ -74,7 +74,6 @@ bool Filme::operator!=(Filme &f)
 
 ostream & operator<<(ostream &o, const Filme &f)
 {
-<<<<<<< HEAD
 	o << "Titulo do filme: " << f.tituloFilme << "\n";
 	o << "Faixa etaria: " << f.fxetaria << "\n";
 	o << "Idioma: " << f.idioma << "\n";
@@ -83,8 +82,6 @@ ostream & operator<<(ostream &o, const Filme &f)
 
 ofstream & operator<<(ofstream &o, Filme &f)
 {
-=======
->>>>>>> FETCH_HEAD
 	o << f.tituloFilme << "\n";
 	o << f.fxetaria << "\n";
 	o << f.idioma << "\n";

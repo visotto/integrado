@@ -8,7 +8,8 @@ $(EXE):
 	$(CC) main.cpp *.o -o $(EXE)
 
 clean:
-	rm -f *.o
+	rm -r -f *.o
+	rm -r -f *~
 
 uninstall:
 	rm -f $(EXE)

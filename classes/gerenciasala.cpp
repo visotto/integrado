@@ -301,6 +301,8 @@ void GerenciaSala::escreverSala(){
 				salas[i]->getFileira(j)->getAssento(k)->getDisponibilidade() ? escreve << "S" : escreve << "N";
 		escreve << "\n";
 		}
+
+
 	}
 	escreve.close();	
 }

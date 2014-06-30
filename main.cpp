@@ -3,10 +3,7 @@
 #include "headers/gerenciasala.h"
 #include "headers/gerenciafilme.h"
 #include "headers/gerenciasessao.h"
-<<<<<<< HEAD
 #include "headers/gerenciavenda.h"
-=======
->>>>>>> FETCH_HEAD
 
 using std::cout;
 using std::cin;
@@ -15,343 +12,175 @@ using std::endl;
 
 void gerenciadorDeSalas(GerenciaSala &g)
 {
-  int opcao;
+	int opcao;
 
-  while (1)
-  {
-    cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
-    cout << "1. Criar Sala" << endl;
-    cout << "2. Remover Sala" << endl;
-    cout << "3. Buscar Sala" << endl;
-    cout << "4. Editar Sala" << endl;
-    cin >> opcao;
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Sala" << endl;
+		cout << "2. Remover Sala" << endl;
+		cout << "3. Buscar Sala" << endl;
+		cout << "4. Editar Sala" << endl;
+		cin >> opcao;
 
-    switch (opcao){
-      case 0:
-      return;
+		switch (opcao){
+		  case 0:
+			return;
 
-      case 1:
-        try
-        {
-            g.criarSala();
-        }
+		  case 1:
+				try
+				{
+			  		g.criarSala();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-        catch(...)
-        {
-          cout << "\nUm erro ocorreu ao adicionar a sala!" << endl;
-        }
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar a sala!" << endl;
+				}
 
-          break;
+			    break;
 
-      case 2:
-        try
-        {
-          g.removerSala();
-        }
+		  case 2:
+				try
+				{
+					g.removerSala();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-          break;
+			    break;
 
-      case 3:
-        try
-        {
-          g.buscarSala();
-        }
+		  case 3:
+				try
+				{
+					g.buscarSala();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-            break;
+  			    break;
 
-      case 4:
-        try
-        {
-          g.editarSala();
-        }
+		  case 4:
+				try
+				{
+					g.editarSala();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-           break;
-     }
-  }
+ 			    break;
+		 }
+	}
 }
 
 void gerenciadorDeFilmes(GerenciaFilme &g)
 {
-  int opcao;
+	int opcao;
 
-  while (1)
-  {
-    cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
-    cout << "1. Criar Filme" << endl;
-    cout << "2. Remover Filme" << endl;
-    cout << "3. Buscar Filme" << endl;
-    cout << "4. Editar Filme" << endl;
-    cout << "5. Listar Filmes" << endl;
-    cin >> opcao;
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Filme" << endl;
+		cout << "2. Remover Filme" << endl;
+		cout << "3. Buscar Filme" << endl;
+		cout << "4. Editar Filme" << endl;
+		cout << "5. Listar Filmes" << endl;
+		cin >> opcao;
 
-    switch (opcao){
-      case 0:
-      return;
+		switch (opcao){
+		  case 0:
+			return;
 
-      case 1:
-        try
-        {
-            g.criarFilme();
-        }
+		  case 1:
+				try
+				{
+			  		g.criarFilme();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-        catch(...)
-        {
-          cout << "\nUm erro ocorreu ao adicionar o filme!" << endl;
-        }
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao adicionar o filme!" << endl;
+				}
 
-          break;
+			    break;
 
-      case 2:
-        try
-        {
-          g.removerFilme();
-        }
+		  case 2:
+				try
+				{
+					g.removerFilme();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-          break;
+			    break;
 
-      case 3:
-        try
-        {
-          g.buscarFilme();
-        }
+		  case 3:
+				try
+				{
+					g.buscarFilme();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-            break;
+  			    break;
 
-      case 4:
-        try
-        {
-          g.editarFilme();
-        }
+		  case 4:
+				try
+				{
+					g.editarFilme();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-           break;
+ 			    break;
 
-      case 5:
-        try
-        {
-          g.listarFilmes();
-        }
+		  case 5:
+				try
+				{
+					g.listarFilmes();
+				}
 
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
 
-           break;
-     }
-  }
+ 			    break;
+		 }
+	}
 }
 
 void gerenciadorDeSessoes(GerenciaSessao &g)
-{
-  int opcao;
-
-  while (1)
-  {
-    cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
-    cout << "1. Criar Sessao" << endl;
-    cout << "2. Remover Sessao" << endl;
-    cout << "3. Buscar Sessao" << endl;
-    cout << "4. Editar Sessao" << endl;
-    cin >> opcao;
-
-    switch (opcao){
-      case 0:
-      return;
-
-      case 1:
-        try
-        {
-            g.criarSessao();
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-        catch(...)
-        {
-          cout << "\nUm erro ocorreu ao adicionar a sessao!" << endl;
-        }
-
-          break;
-
-      case 2:
-        try
-        {
-          g.removerSessao();
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-          break;
-
-      case 3:
-        try
-        {
-          g.buscarSessao();
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-            break;
-
-      case 4:
-        try
-        {
-          g.editarSessao();
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-           break;
-
-     }
-  }
-}
-
-<<<<<<< HEAD
-void gerenciadorDeVendas(GerenciaVenda &g)
-{
-  int opcao;
-
-  while (1)
-  {
-    cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
-    cout << "1. Criar Venda" << endl;
-    cout << "2. Exibir Venda" << endl;
-    cout << "3. Adicionar ingresso em uma venda" << endl;
-    cout << "4. Remover ingresso de uma venda" << endl;
-    cin >> opcao;
-
-    switch (opcao){
-      case 0:
-      return;
-
-      case 1:
-        try
-        {
-            g.criaVenda();
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-        catch(...)
-        {
-          cout << "\nUm erro ocorreu ao criar a venda!" << endl;
-        }
-
-          break;
-
-      case 2:
-        try
-        {
-          int _id;
-          cout << "\nEntre com ID da venda: ";
-          cin >> _id;
-          g.exibirVenda(_id);
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-          break;
-
-      case 3:
-        try
-        {
-          int _id;
-          cout << "\nEntre com ID da venda: ";
-          cin >> _id;
-          g.addIngressoVenda(_id);
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-            break;
-
-      case 4:
-        try
-        {
-          int _id;
-          cout << "\nEntre com ID da venda: ";
-          cin >> _id;
-          g.removeIngressoVenda(_id);
-        }
-
-        catch(char const* s)
-        {
-          cout << s << endl;
-        }
-
-            break;
-
-     }
-  }
-
-=======
-void gerenciadorDeSessoes(GerenciaSessao &se)
 {
 	int opcao;
 
@@ -372,7 +201,7 @@ void gerenciadorDeSessoes(GerenciaSessao &se)
 		  case 1:
 				try
 				{
-			  		se.criarSessao();
+			  		g.criarSessao();
 				}
 
 				catch(char const* s)
@@ -390,7 +219,7 @@ void gerenciadorDeSessoes(GerenciaSessao &se)
 		  case 2:
 				try
 				{
-					se.removerSessao();
+					g.removerSessao();
 				}
 
 				catch(char const* s)
@@ -403,7 +232,7 @@ void gerenciadorDeSessoes(GerenciaSessao &se)
 		  case 3:
 				try
 				{
-					se.buscarSessao();
+					g.buscarSessao();
 				}
 
 				catch(char const* s)
@@ -416,7 +245,7 @@ void gerenciadorDeSessoes(GerenciaSessao &se)
 		  case 4:
 				try
 				{
-					se.editarSessao();
+					g.editarSessao();
 				}
 
 				catch(char const* s)
@@ -428,55 +257,105 @@ void gerenciadorDeSessoes(GerenciaSessao &se)
 
 		 }
 	}
->>>>>>> FETCH_HEAD
+}
+
+void gerenciadorDeVendas(GerenciaVenda &g)
+{
+	int opcao;
+
+	while (1)
+	{
+		cout << "Escolha uma opcao:" << endl;
+		cout << "0. Voltar para o Menu anterior" << endl;
+		cout << "1. Criar Venda" << endl;
+		cout << "2. Exibir Venda" << endl;
+		cout << "3. Adicionar ingresso em uma venda" << endl;
+		cout << "4. Remover ingresso de uma venda" << endl;
+		cin >> opcao;
+
+		switch (opcao){
+		  case 0:
+			return;
+
+		  case 1:
+				try
+				{
+			  		g.criaVenda();
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+				catch(...)
+				{
+					cout << "\nUm erro ocorreu ao criar a venda!" << endl;
+				}
+
+			    break;
+
+		  case 2:
+				try
+				{
+					int _id;
+					cout << "\nEntre com ID da venda: ";
+					cin >> _id;
+					g.exibirVenda(_id);
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+			    break;
+
+		  case 3:
+				try
+				{
+					int _id;
+					cout << "\nEntre com ID da venda: ";
+					cin >> _id;
+					g.addIngressoVenda(_id);
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
+		  case 4:
+				try
+				{
+					int _id;
+					cout << "\nEntre com ID da venda: ";
+					cin >> _id;
+					g.removeIngressoVenda(_id);
+				}
+
+				catch(char const* s)
+				{
+					cout << s << endl;
+				}
+
+  			    break;
+
+		 }
+	}
+
 }
 
 
 void ativarCinema()
 {
-<<<<<<< HEAD
-  int opcao;
-  GerenciaSala s;
-  GerenciaFilme f;
-  GerenciaSessao se(&s,&f);
-  GerenciaVenda gv(&s, &se);
-
-  while (1)
-  {
-    cout << "Escolha um menu:" << endl;
-    cout << "0. Sair do programa" << endl;
-    cout << "1. Gerenciar salas" << endl;
-    cout << "2. Gerenciar filmes" << endl;
-    cout << "3. Gerenciar sessoes" << endl;
-    cout << "4. Gerenciar vendas" << endl;
-    cin >> opcao;
-
-    switch(opcao)
-    {
-      case 0:
-        return;
-
-      case 1:
-        gerenciadorDeSalas(s);
-        break;
-      case 2:
-        gerenciadorDeFilmes(f);
-        break;
-      case 3:
-        gerenciadorDeSessoes(se);
-      break;
-      case 4:
-        gerenciadorDeVendas(gv);
-      break;
-
-
-    }
-  }
-=======
 	int opcao;
 	GerenciaSala s;
 	GerenciaFilme f;
 	GerenciaSessao se(&s,&f);
+	GerenciaVenda gv(&s, &se);
 
 	while (1)
 	{
@@ -485,6 +364,7 @@ void ativarCinema()
 		cout << "1. Gerenciar salas" << endl;
 		cout << "2. Gerenciar filmes" << endl;
 		cout << "3. Gerenciar sessoes" << endl;
+		cout << "4. Gerenciar vendas" << endl;
 		cin >> opcao;
 
 		switch(opcao)
@@ -501,13 +381,16 @@ void ativarCinema()
 			case 3:
 				gerenciadorDeSessoes(se);
 			break;
+			case 4:
+				gerenciadorDeVendas(gv);
+			break;
+
 
 		}
 	}
->>>>>>> FETCH_HEAD
 }
 
 int main(int argc, char *argv[]) {
-  ativarCinema();
-  return 0;
+	ativarCinema();
+	return 0;
 }

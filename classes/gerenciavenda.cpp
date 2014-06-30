@@ -7,18 +7,11 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 
 GerenciaVenda::GerenciaVenda(GerenciaSala *g1, GerenciaSessao *g2) : gerencSala(g1), gerencSessao(g2)
 {			
 	int i, j;
 
-=======
-GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
-{	
-		
-	int i, j;
->>>>>>> FETCH_HEAD
 	for (i = 0; i < MAX_SESSOES; i++)
 		vendas[i] = NULL;
 	qtdVendas = 0;
@@ -44,14 +37,8 @@ GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
 	int _id, _idSessao;
 	Sessao *_sessao;
 	FormaPagto _formaPagto;
-<<<<<<< HEAD
 	Ingresso **ingressos;
 	string _tituloFilme;
-=======
-	Filme *_filme;
-	string _string;
-	Ingresos **ingressos;
->>>>>>> FETCH_HEAD
 
 	// Le do arquivo a quantidade de vendas armazenadas
 	getline(leitura, leituraLinha);
@@ -69,11 +56,7 @@ GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
 		// Enquanto tiver vendas armazenadas no arquivo
 		while(k < qtdVendas){
 			
-<<<<<<< HEAD
 			// Le do arquivo o id da venda
-=======
-			// Le do arquivo o numero da sala
->>>>>>> FETCH_HEAD
 			getline(leitura, leituraLinha);
 			stringstream convertIdVenda(leituraLinha);  	 	    
   	 	    convertIdVenda >> _id;
@@ -82,7 +65,6 @@ GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
 			getline(leitura, leituraLinha);
 			stringstream convertIdSessao(leituraLinha);
 			convertIdSessao >> _idSessao;
-<<<<<<< HEAD
 			Sessao *_sessao = gerencSessao->buscarSessao(_idSessao);
 
 			// Le do arquivo a forma de pagamento
@@ -135,35 +117,6 @@ GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
 					tipo = meia;
 
 				vendas[k]->addIngresso(vendas[k]->getSessao()->getIngresso(idF, aux), valor, tipo);
-=======
-
-			// Le do arquivo o horario da sessao
-			getline(leitura, leituraLinha);
-			stringstream convertFormaPagto(leituraLinha);
-			convertFormaPagto >> _formaPagto;
-
-			// Le do arquivo o horario da sessao
-			getline(leitura, leituraLinha);
-			_tituloFilme = leituraLinha;
-
-
-
-			sala = gerencSala->buscarSala(_idSala);
-
-			// Aloca a sessao k armazenada no arquivo
-			vendas[k] = new Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto);
-
-			// Le os status dos assentos
-			for(i = 0; i < vendas[k]->getSala()->getCapacidade(); i++){
-				getline(leitura, leituraLinha);
-				
-				for(j = 0; j < vendas[k]->getSala()->getQtdAssentos(); j++){ //PILHA PILHA
-					if(leituraLinha[j] == 'S')
-						vendas[k]->getSala()->getFileira(i)->getAssento(j)->setDisponibilidade(false);
-					else
-						vendas[k]->getSala()->getFileira(i)->getAssento(j)->setDisponibilidade(true);
-				}
->>>>>>> FETCH_HEAD
 			}
 			k++;
 		}
@@ -172,7 +125,6 @@ GerenciaVenda::GerenciaVenda(GerenciaSessao *g) : gerencSala(g), gerencFilme(f)
 	leitura.close();	
 }
 
-<<<<<<< HEAD
 
 void GerenciaVenda::criaVenda()
 {
@@ -353,7 +305,5 @@ void GerenciaVenda::escreverVenda(){
 			escreve << vendas[i]->getIngresso(j)->getTipo() << "\n";
 		}
 	}
-	escreve.close();
+	escreve.close();	
 }
-=======
->>>>>>> FETCH_HEAD

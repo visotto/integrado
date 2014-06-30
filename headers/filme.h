@@ -5,19 +5,12 @@
 #include <fstream>
 using std::string;
 using std::ostream;
-<<<<<<< HEAD
 using std::ofstream;
 
 class Filme
 {
-    friend ostream & operator<<(ostream &o, const Filme &f);
-    friend ofstream & operator<<(ofstream &o, Filme &f);
-=======
-
-class Filme
-{
 	friend ostream & operator<<(ostream &o, const Filme &f);
->>>>>>> FETCH_HEAD
+	friend ofstream & operator<<(ofstream &o, Filme &f);
 
   private:
     string tituloFilme;
@@ -26,34 +19,22 @@ class Filme
 
   public:
     Filme(string _tituloFilme = " ", int _fxetaria = 0, char _idioma = ' ');
-<<<<<<< HEAD
-    Filme(const Filme &f);
-=======
 	Filme(const Filme &f);
->>>>>>> FETCH_HEAD
 
     void setTituloFilme(string _filme);
     void setFxEtaria(int _fxEtaria);
     void setIdioma(char idioma);
 
-    string getTituloFilme();
+	string getTituloFilme();
     int getFxEtaria();
     char getIdioma();
-    string getQueryID();
+	string getQueryID();
 
-<<<<<<< HEAD
-    // Sobrecargas necessarias para funcionamento da arvore
-    bool operator<(Filme &f);
-    bool operator>(Filme &f);
-    bool operator==(Filme &f);
-    bool operator!=(Filme &f);
-=======
 	// Sobrecargas necessarias para funcionamento da arvore
 	bool operator<(Filme &f);
 	bool operator>(Filme &f);
 	bool operator==(Filme &f);
 	bool operator!=(Filme &f);
->>>>>>> FETCH_HEAD
 };
 
 #endif // FILME_H
