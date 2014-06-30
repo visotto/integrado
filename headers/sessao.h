@@ -13,18 +13,18 @@ using std::string;
 class Sessao
 {
   private:
-	int id;
+  int id;
     Horario horario;
     bool encerrada;
     int numVendido;
     Filme *filme; // uma sessao conhece um filme
     Sala *sala; // uma sessao conhece uma sala 
-	Ingresso **ingressos; // uma sessao possui ingressos relativos a ela
-	int qtdIngressos;
+    Ingresso **ingressos; // uma sessao possui ingressos relativos a ela
+    int qtdIngressos;
 
   public:
     Sessao(Sala *_sala, int _id, Horario _horario, Filme *_filme);
-	~Sessao();
+    ~Sessao();
 
     void setStatus(bool encerrada);
     bool getStatus();
@@ -32,17 +32,16 @@ class Sessao
     void setHorario(Horario _horario);
     Horario getHorario();
 
-	Ingresso* getIngresso(char idFileira, int idAssento);
+    Ingresso* getIngresso(char idFileira, int idAssento);
 
     void incNumVendido(char opcao);
     int getDisponivel();
-	int getNumVendido();
+    int getNumVendido();
 
-	int getQueryID();
+    int getQueryID();
 
-	Sala* getSala();
-	Filme* getFilme();
-
+    Sala* getSala();
+    Filme* getFilme();
 };
 
 #endif // SESSAO_H

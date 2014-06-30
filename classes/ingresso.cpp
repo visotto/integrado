@@ -2,56 +2,56 @@
 
 Ingresso::Ingresso(Horario _horaIngresso, Assento *_assento)
 {
-	horaIngresso = _horaIngresso;
-	assento = _assento;
+  horaIngresso = _horaIngresso;
+  assento = _assento;
 }
 
 bool Ingresso::isVendido()
 {
-	return vendido;
+  return vendido;
 }
 
 double Ingresso::getValor()
 {
-	return valor;
+  return valor;
 }
 
 Horario Ingresso::getHorario()
 {
-	return horaIngresso;
+  return horaIngresso;
 }
 
 string Ingresso::getTipo()
 {
-	if (tipo == inteiro)
-		return "inteiro";
-	else
-		return "meia";
+  if (tipo == inteiro)
+    return "inteiro";
+  else
+    return "meia";
 }
 
 void Ingresso::setTipo(Tipo t)
 {
-	tipo = t;
+  tipo = t;
 }
 
 Assento* Ingresso::getAssento()
 {
-	return assento;
+  return assento;
 }
 
 void Ingresso::setValor(double valor)
 {
-	Ingresso::valor = valor;
+  Ingresso::valor = valor;
 }
 
 void Ingresso::venda()
 {
-	vendido = true;
-	assento->setDisponibilidade(false);
+  vendido = true;
+  assento->setDisponibilidade(false);
 }
 
 void Ingresso::cancela()
 {
-	vendido = false;
-	assento->setDisponibilidade(true);
+  vendido = false;
+  assento->setDisponibilidade(true);
 }

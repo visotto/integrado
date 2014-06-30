@@ -2,35 +2,35 @@
 
 int Horario::getHora()
 {
-	return hora;
+  return hora;
 }
 
 int Horario::getMinuto()
 {
-	return minuto;
+  return minuto;
 }
 
 ostream &operator<<(ostream &o, const Horario &h)
 {
-	o << h.hora << ":" << h.minuto;
+  o << h.hora << ":" << h.minuto;
 
-	return o;
+  return o;
 }
 
 istream &operator>>(istream &i, Horario &h)
 {
-	i >> h.hora; 
-	i.ignore(1); //Ignora o ':'
-	i >> h.minuto;
+  i >> h.hora; 
+  i.ignore(1); // ignora o ':'
+  i >> h.minuto;
 
-	return i;
+  return i;
 }
 
 stringstream &operator>>(stringstream &s, Horario &h)
 {
-	s >> h.hora; 
-	s.ignore(1); //Ignora o ':'
-	s >> h.minuto;
+  s >> h.hora; 
+  s.ignore(1); // ignora o ':'
+  s >> h.minuto;
 
-	return s;
+  return s;
 }

@@ -16,27 +16,26 @@ enum FormaPagto{dinheiro, cartao};
 class Venda{
   
   private:
-	int id;
+  int id;
     double valorTotal;
     FormaPagto formaPagto;
     Ingresso **ingressos; // vetor de ponteiros para ingressos
-	int qtdIngressos;
+    int qtdIngressos;
     Sessao *sessao; // atualiza disponibilidade
   
   public:
     Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto);
-	~Venda();
+    ~Venda();
     double calcularValorTotal();
     void emitirIngresso(Ingresso *ingresso);
     void addIngresso(Ingresso *ingresso, double valor, Tipo tipo);
     void removeIngresso(Ingresso *ingresso);
-	string getFormaPagto();
+    string getFormaPagto();
 
-	int getQueryID();
-	int getQtdIngressos();
-	Sessao *getSessao();
-	Ingresso *getIngresso(int id);
-
+    int getQueryID();
+    int getQtdIngressos();
+    Sessao *getSessao();
+    Ingresso *getIngresso(int id);
 };
 
 #endif // VENDA_H

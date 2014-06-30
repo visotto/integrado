@@ -20,11 +20,11 @@ class Arvore {
     No<T> *raiz;
 
   public:
-    // Construtor e destrutor
+    // construtor e destrutor
     Arvore();
     ~Arvore();
     
-    // Metodos para manipular a raiz da arvore
+    // metodos para manipular a raiz da arvore
     void setRaiz(No<T> *r);
     No<T>* getRaiz();
     No<T>** getEndRaiz();

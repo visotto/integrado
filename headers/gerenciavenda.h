@@ -11,19 +11,19 @@
 
 class GerenciaVenda
 {
-	private:
-	Venda *vendas[MAX_VENDAS];
-	int qtdVendas; //por sessao e por horario
-	GerenciaSala *gerencSala;
-	GerenciaSessao *gerencSessao;
-	void escreverVenda();
+  private:
+	  Venda *vendas[MAX_VENDAS];
+	  int qtdVendas; // por sessao e por horario
+	  GerenciaSala *gerencSala;
+	  GerenciaSessao *gerencSessao;
+	  void escreverVenda();
 
-	public:
-	GerenciaVenda(GerenciaSala *gerencSala, GerenciaSessao *gerencSessao);
-	void criaVenda();
-	void addIngressoVenda(int idVenda);
-	void removeIngressoVenda(int idVenda); 
-	void exibirVenda(int idVenda);
+  public:
+	  GerenciaVenda(GerenciaSala *gerencSala, GerenciaSessao *gerencSessao);
+	  void criaVenda();
+	  void addIngressoVenda(int idVenda);
+	  void removeIngressoVenda(int idVenda); 
+	  void exibirVenda(int idVenda);
 };
 
 #endif // GERENCIAVENDA_H

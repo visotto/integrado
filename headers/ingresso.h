@@ -14,23 +14,23 @@ class Ingresso{
     Horario horaIngresso;
     double valor;
     Tipo tipo;
-	Assento *assento;
-	bool vendido;
+    Assento *assento;
+    bool vendido;
   
   public:
     Ingresso(Horario _horaIngresso, Assento *_assento);
 
-	bool isVendido(); // retorna se o ingresso foi vendido ou nao
-    
+    bool isVendido(); // retorna se o ingresso foi vendido ou nao
+
     double getValor();
-	Horario getHorario();
-	string getTipo();
-	void setTipo(Tipo t);
-	Assento* getAssento();
+    Horario getHorario();
+    string getTipo();
+    void setTipo(Tipo t);
+    Assento* getAssento();
     void setValor(double valor);
-    
+
     void venda(); // ocupa o assento
-	void cancela(); // libera o assento
+    void cancela(); // libera o assento
 };
 
 #endif // INGRESSO_H
