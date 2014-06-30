@@ -24,6 +24,7 @@ class GerenciaVenda
 	  void addIngressoVenda(int idVenda);
 	  void removeIngressoVenda(int idVenda); 
 	  void exibirVenda(int idVenda);
+	  void listarVendas();
 };
 
 #endif // GERENCIAVENDA_H

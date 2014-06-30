@@ -307,3 +307,32 @@ void GerenciaVenda::escreverVenda(){
   }
   escreve.close();  
 }
+
+void GerenciaVenda::listarVendas()
+{
+  
+  if (!qtdVendas)
+    throw "\nNao existem vendas cadastradas!\n";
+
+  cout << "Lista de vendas cadastradas:" << endl;
+  for (int i = 0; i < qtdVendas; i++)
+  {
+    
+      cout << "Venda " << vendas[i]->getQueryID() << ":" << endl;
+      for (int j = 0; j < vendas[i]->getQtdIngressos(); j++)
+        if (vendas[i]->getIngresso(j) != NULL)
+          vendas[i]->emitirIngresso(vendas[i]->getIngresso(j));
+
+      if (vendas[i]->getFormaPagto() == "cartao")
+        cout << "Valor total: R$ " << vendas[i]->calcularValorTotal()*0.9 << " (10 porcento de desconto no cartao)"; 
+      else
+        cout << "Valor total: R$ " << vendas[i]->calcularValorTotal();
+
+      cout << endl << endl;
+      return;
+    
+  }
+
+  throw "Venda com este ID nao existe!\n";
+
+}

@@ -21,6 +21,7 @@ class GerenciaSala{
     void editarSala(); 
     /* ------------------- */
     void escreverSala(); // funcao para escrever no arquivo salas.data as salas cadastradas
+    void listarSalas();
 };
 
 #endif // GERENCIASALA_H

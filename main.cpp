@@ -17,11 +17,12 @@ void gerenciadorDeSalas(GerenciaSala &g)
   while (1)
   {
     cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
     cout << "1. Criar Sala" << endl;
     cout << "2. Remover Sala" << endl;
     cout << "3. Buscar Sala" << endl;
     cout << "4. Editar Sala" << endl;
+    cout << "5. Listar Salas" << endl;
+    cout << "0. Voltar para o Menu anterior" << endl;
     cin >> opcao;
 
     switch (opcao){
@@ -84,7 +85,21 @@ void gerenciadorDeSalas(GerenciaSala &g)
         }
 
            break;
-     }
+
+      case 5:
+        try
+        {
+          g.listarSalas();
+        }
+
+        catch(char const* s)
+        {
+          cout << s << endl;
+        }
+
+            break;
+     
+    }
   }
 }
 
@@ -95,12 +110,12 @@ void gerenciadorDeFilmes(GerenciaFilme &g)
   while (1)
   {
     cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
     cout << "1. Criar Filme" << endl;
     cout << "2. Remover Filme" << endl;
     cout << "3. Buscar Filme" << endl;
     cout << "4. Editar Filme" << endl;
     cout << "5. Listar Filmes" << endl;
+    cout << "0. Voltar para o Menu anterior" << endl;
     cin >> opcao;
 
     switch (opcao){
@@ -176,7 +191,7 @@ void gerenciadorDeFilmes(GerenciaFilme &g)
         }
 
            break;
-     }
+    }
   }
 }
 
@@ -187,11 +202,12 @@ void gerenciadorDeSessoes(GerenciaSessao &g)
   while (1)
   {
     cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
     cout << "1. Criar Sessao" << endl;
     cout << "2. Remover Sessao" << endl;
     cout << "3. Buscar Sessao" << endl;
     cout << "4. Editar Sessao" << endl;
+    cout << "5. Listar Sessoes" << endl;
+    cout << "0. Voltar para o Menu anterior" << endl;
     cin >> opcao;
 
     switch (opcao){
@@ -255,7 +271,20 @@ void gerenciadorDeSessoes(GerenciaSessao &g)
 
            break;
 
-     }
+       case 5:
+        try
+        {
+          g.listarSessoes();
+        }
+
+        catch(char const* s)
+        {
+          cout << s << endl;
+        }
+
+            break;
+
+    }
   }
 }
 
@@ -266,11 +295,12 @@ void gerenciadorDeVendas(GerenciaVenda &g)
   while (1)
   {
     cout << "Escolha uma opcao:" << endl;
-    cout << "0. Voltar para o Menu anterior" << endl;
     cout << "1. Criar Venda" << endl;
     cout << "2. Exibir Venda" << endl;
     cout << "3. Adicionar ingresso em uma venda" << endl;
     cout << "4. Remover ingresso de uma venda" << endl;
+    cout << "5. Listar Vendas" << endl;
+    cout << "0. Voltar para o Menu anterior" << endl;
     cin >> opcao;
 
     switch (opcao){
@@ -343,7 +373,20 @@ void gerenciadorDeVendas(GerenciaVenda &g)
 
             break;
 
-     }
+      case 5:
+        try
+        {
+          g.listarVendas();
+        }
+
+        catch(char const* s)
+        {
+          cout << s << endl;
+        }
+
+            break;
+
+    }
   }
 
 }
@@ -360,11 +403,11 @@ void ativarCinema()
   while (1)
   {
     cout << "Escolha um menu:" << endl;
-    cout << "0. Sair do programa" << endl;
     cout << "1. Gerenciar salas" << endl;
     cout << "2. Gerenciar filmes" << endl;
     cout << "3. Gerenciar sessoes" << endl;
     cout << "4. Gerenciar vendas" << endl;
+    cout << "0. Sair do programa" << endl;
     cin >> opcao;
 
     switch(opcao)

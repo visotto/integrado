@@ -25,6 +25,7 @@ class GerenciaSessao{
     void editarSessao(); 
     /* ------------------- */
     void escreverSessao(); // funcao para escrever no arquivo sessoes.data as salas cadastradas
+    void listarSessoes();
 };
 
 #endif // GERENCIASESSAO_H

@@ -307,3 +307,48 @@ void GerenciaSessao::escreverSessao(){
   }
   escreve.close();  
 }
+
+void GerenciaSessao::listarSessoes()
+{
+  
+  if (!qtdSessoes)
+    throw "\nNao existem sessoes cadastradas!\n";
+
+  cout << "Lista de sessoes cadastradas:" << endl;
+  for (int i = 0; i < qtdSessoes; i++){
+    
+    
+      cout << "Sessao: " << sessoes[i]->getQueryID() << endl;
+      cout << "Horario da sessao: " << sessoes[i]->getHorario() << endl;
+      cout << "Sala da sessao: " << sessoes[i]->getSala()->getNumSala() << endl;
+      cout << "Filme da sessao: " << sessoes[i]->getFilme()->getTituloFilme() << endl;
+
+      cout << "Relacao de ingressos vendidos:" << endl;
+      cout << "     ";
+
+      for (int j = 0; j < sessoes[i]->getSala()->getQtdAssentos(); j++)
+      {
+        cout << j+1;
+
+        // se j for 10 ou mais, alinhamos o texto com 1 espaco a menos
+        j >= 9 ? cout << "  " : cout << "   ";
+      }
+
+      cout << endl << endl;
+
+      for (int j = 0; j < sessoes[i]->getSala()->getCapacidade(); j++)
+      {
+        cout << sessoes[i]->getSala()->getFileira(j)->getIdFileira() << "    ";
+
+        for (int k = 0; k < sessoes[i]->getSala()->getQtdAssentos(); k++)
+        {
+          // assento disponivel (isso implica no ingresso associado ahquele assento ter sido vendido)? printe S, caso contrario printe N
+          sessoes[i]->getSala()->getFileira(j)->getAssento(k)->getDisponibilidade() ? cout << "N   " : cout << "S   ";
+        }
+
+        cout << endl;
+      }
+      cout << endl;
+  }
+
+}

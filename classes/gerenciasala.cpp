@@ -302,3 +302,46 @@ void GerenciaSala::escreverSala(){
   }
   escreve.close();  
 }
+
+void GerenciaSala::listarSalas()
+{
+  if (!qtdSalas)
+    throw "\nNao existem salas cadastradas!\n";
+
+  cout << "Lista de salas cadastradas:" << endl;
+  for (int i = 0; i < qtdSalas; i++){
+
+      cout << "Sala " << salas[i]->getNumSala() << ": " << endl;
+      cout << "Capacidade da sala (quantidade de fileiras na sala): " << salas[i]->getCapacidade() << endl;
+      cout << "Quantidade de assentos em cada fileira: " << salas[i]->getQtdAssentos() << endl;
+      cout << "Situacao da sala: " << salas[i]->getSituacao() << endl;
+
+      cout << "Relacao de assentos livres e ocupados:" << endl;
+      cout << "     ";
+
+      for (int j = 0; j < salas[i]->getQtdAssentos(); j++)
+      {
+        cout << j+1;
+
+        // se j for 10 ou mais, alinhamos o texto com 1 espaco a menos
+        j >= 9 ? cout << "  " : cout << "   ";
+      }
+
+      cout << endl << endl;
+
+      for (int j = 0; j < salas[i]->getCapacidade(); j++)
+      {
+        cout << salas[i]->getFileira(j)->getIdFileira() << "    ";
+
+        for (int k = 0; k < salas[i]->getQtdAssentos(); k++)
+        {
+          // assento disponivel? printe S, caso contrario printe N
+          salas[i]->getFileira(j)->getAssento(k)->getDisponibilidade() ? cout << "S   " : cout << "N   ";
+        }
+
+        cout << endl;
+      }
+      cout << endl;
+  }
+
+}
