@@ -46,7 +46,7 @@ Horario Sessao::getHorario()
 
 Ingresso* Sessao::getIngresso(char idFileira, int idAssento)
 {
-  return ingressos[sala->getQtdAssentos() * ((int)idFileira-'A') + (idAssento-1)];
+  return ingressos[sala->getQtdAssentos() * ((int)idFileira-'A') + (idAssento-1)]; // aritmetica de matriz
 }
 
 // altera o numero de ingressos vendidos

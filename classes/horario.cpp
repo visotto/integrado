@@ -1,5 +1,11 @@
 #include "../headers/horario.h"
 
+Horario::Horario(const Horario &h)
+{
+  hora = h.hora;
+  minuto = h.minuto;
+}
+
 int Horario::getHora()
 {
   return hora;

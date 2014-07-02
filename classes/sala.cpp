@@ -1,4 +1,7 @@
 #include "../headers/sala.h"
+
+#include <iostream> // NULL
+
 Sala::Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos)
 {
   numSala = _numSala;

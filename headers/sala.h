@@ -15,25 +15,26 @@ class Sala
     int capacidade;
     int qtdAssentos;
     Situacao situacao;
-    Fileira **fileiras; // vetor de ponteiros para fileiras
+    Fileira **fileiras; // vetor de ponteiros para alocar as fileiras relativas a esta sala
 
   public:
-    Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos);
-    ~Sala();
+    Sala(int _numSala, int _capacidade, Situacao _situacao, int _qtdAssentos); // construtor
+    ~Sala(); // destrutor
+
+    int getQtdAssentos();
 
     int getNumSala();
     void setNumSala(int numSala);
 
-    int getQtdAssentos();
     string getSituacao();
     void setSituacao(Situacao _situacao);
 
-    void setCapacidade(int capacidade);
     int getCapacidade();
+    void setCapacidade(int capacidade);
 
     Fileira* getFileira(int idFileira);
 
-    int getQueryID();
+    int getQueryID(); // retorna o numero da sala
 };
 
 #endif // SALA_H

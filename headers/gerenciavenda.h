@@ -1,7 +1,6 @@
 #ifndef GERENCIAVENDA_H
 #define GERENCIAVENDA_H
 
-#include <iostream>
 #include "../headers/consts.h"
 #include "../headers/ingresso.h"
 #include "../headers/sessao.h"
@@ -20,10 +19,12 @@ class GerenciaVenda
 
   public:
 	  GerenciaVenda(GerenciaSala *gerencSala, GerenciaSessao *gerencSessao);
+    /* ------ CRUD ------- */
 	  void criaVenda();
 	  void addIngressoVenda(int idVenda);
-	  void removeIngressoVenda(int idVenda); 
+	  void removeIngressoVenda(int idVenda);
 	  void exibirVenda(int idVenda);
+    /* ------ CRUD ------- */
 	  void listarVendas();
 };
 

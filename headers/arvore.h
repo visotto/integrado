@@ -1,10 +1,14 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+using std::ostream;
+using std::ofstream;
+using std::cout;
+using std::endl;
 
 template<class T>
-class No {
+class No
+{
   public:
     T info;
     No<T>*esq;
@@ -15,7 +19,8 @@ class No {
 };
 
 template <class T>
-class Arvore {
+class Arvore
+{
   private:
     No<T> *raiz;
 
@@ -29,17 +34,16 @@ class Arvore {
     No<T>* getRaiz();
     No<T>** getEndRaiz();
     
-    // CRUD
+    /* ------ CRUD ------- */
     bool insere(No<T> **r, T chave);
     No<T>* remove(No<T>* r, T chave);
     void listar(ofstream &o, No<T> *r);
     void listar(ostream &o, No<T> *r);
     T busca(No<T> *r, T chave);
+    /* ------ CRUD ------- */
 };
 
-// =================================
-// Metodos relativas a classe No
-
+// metodos relativos a classe No
 template<class T>
 No<T>::No()
 {  
@@ -63,12 +67,7 @@ No<T>::No(No<T>* no)
   dir = no->dir;
 }
 
-// Fim das metodos da classe No
-// =================================
-
-// =================================
-// Metodos relativas a classe Arvore
-
+// metodos relativos a classe Arvore
 template <class T>
 Arvore<T>::Arvore()
 {
@@ -87,7 +86,6 @@ void Arvore<T>::setRaiz(No<T> *r)
   raiz = r;
 }
 
-
 template<class T>
 No<T>* Arvore<T>::getRaiz()
 {
@@ -103,7 +101,8 @@ No<T>** Arvore<T>::getEndRaiz()
 template <class T>
 void Arvore<T>::listar(ofstream &o, No<T> *r)
 {
-  if (r != NULL) {
+  if (r != NULL)
+  {
     listar(o, r->esq);
     o << r->info << endl;
     listar(o, r->dir);
@@ -113,7 +112,8 @@ void Arvore<T>::listar(ofstream &o, No<T> *r)
 template <class T>
 void Arvore<T>::listar(ostream &o, No<T> *r)
 {
-  if (r != NULL) {
+  if (r != NULL)
+  {
     listar(o, r->esq);
     o << r->info << endl;
     listar(o, r->dir);
@@ -194,6 +194,6 @@ No<T>* Arvore<T>::remove(No<T>* r, T chave)
      if (rem->esq != NULL) fila[tail++] = rem->esq;
      if (rem->dir != NULL) fila[tail++] = rem->dir;
   }
-  
+
   return ret->getRaiz();
 }  

@@ -1,5 +1,7 @@
 #include "../headers/fileira.h"
 
+#include <iostream> // NULL
+
 Fileira::Fileira(char _idFileira, int _qtdAssentos)
 {
   idFileira = _idFileira;
@@ -21,20 +23,20 @@ Fileira::~Fileira()
   delete [] assentos;
 }
 
-bool Fileira::verificaDisponibilidade()
-{
-  Assento** i = assentos; // i aponta para vetor de assentos, posicao 0
+// bool Fileira::verificaDisponibilidade()
+// {
+//   Assento** i = assentos; // i aponta para vetor de assentos, posicao 0
 
-  while (*i != NULL) // percorra todos assentos e veja se existe ao menos um livre
-  {
-    if ((*i)->getDisponibilidade() == true)
-      return true;
+//   while (*i != NULL) // percorra todos assentos e veja se existe ao menos um livre
+//   {
+//     if ((*i)->getDisponibilidade() == true)
+//       return true;
 
-    (*i)++;
-  }
+//     (*i)++;
+//   }
 
-  return false;
-}
+//   return false;
+// }
 
 char Fileira::getIdFileira()
 {
@@ -51,7 +53,7 @@ Assento* Fileira::getAssento(int idAssento)
     return NULL;
 }
 
-void Fileira::setIdFileira(int _idFileira)
+void Fileira::setIdFileira(char _idFileira)
 {
   idFileira = _idFileira;
 }

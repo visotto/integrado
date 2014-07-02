@@ -1,7 +1,11 @@
 #include "../headers/venda.h"
 
+#include <iomanip> // fixed e setprecision()
+
 using std::cout;
 using std::endl;
+using std::setprecision;
+using std::fixed;
 
 Venda::Venda(Sessao *_sessao, int _id ,FormaPagto _formaPagto)
 {

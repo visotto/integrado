@@ -1,8 +1,6 @@
 #ifndef ASSENTO_H
 #define ASSENTO_H
 
-#include <iostream>
-
 class Assento
 {
   private:
@@ -11,11 +9,11 @@ class Assento
     char idFileira; // num da fileira da qual este assento faz parte
 
   public:
-    Assento(int _idAssento, bool _disponibilidade, char _idFileira);
+    Assento(int _idAssento, bool _disponibilidade, char _idFileira); // construtor
     void setDisponibilidade(bool _disponibilidade);
     void setIdAssento(int _idAssento);
     void setIdFileira(char _idFileira);
-    bool getDisponibilidade(); // eh disparado pela classe fileira
+    bool getDisponibilidade();
     int getIdAssento();
     char getIdFileira();
 };

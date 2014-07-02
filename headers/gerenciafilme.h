@@ -1,26 +1,25 @@
-// BOUNDARY - fronteira
 #ifndef GERENCIAFILME_H
 #define GERENCIAFILME_H
 
-#include <iostream>
 #include "../headers/consts.h"
 #include "../headers/filme.h"
 #include "../headers/arvore.h"
 
-class GerenciaFilme{
+class GerenciaFilme
+{
   private:
     int qtdFilmes;
-    Arvore<Filme> filmes;
-    void escreverFilme(); // funcao para escrever no arquivo Filmes.data os Filmes cadastradas
+    Arvore<Filme> filmes; // estrutura ABB que armazena os filmes
+    void escreverFilme(); // metodo para escrever no arquivo filmes.data os filmes cadastradas
 
   public:
-    GerenciaFilme();
-    /* ------ CRUD ------- */            
-    void criarFilme(); // retorna true se criou com sucesso
-    void removerFilme(); // retorna true se removeu com sucesso
-    void buscarFilme();  
-    Filme* buscarFilme(string _tituloFilme);  
-    void editarFilme(); 
+    GerenciaFilme(); // construtor
+    /* ------ CRUD ------- */
+    void criarFilme();
+    void removerFilme();
+    void buscarFilme();
+    Filme* buscarFilme(string _tituloFilme);
+    void editarFilme();
     /* ------------------- */
     void listarFilmes();
 };

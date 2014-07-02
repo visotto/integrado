@@ -2,7 +2,7 @@
 #define HORARIO_H
 
 #include <iostream>
-#include <sstream>
+#include <sstream> // stringstream
 
 using std::ostream;
 using std::istream;
@@ -19,15 +19,10 @@ class Horario
     int minuto;
 
   public:
+    Horario(int h = 0, int m = 0) : hora(h), minuto(m) {}; // construtor
+    Horario(const Horario &h); // construtor de copia
     int getHora();
     int getMinuto();
-    Horario() : hora(0), minuto(0) {} ;
-    Horario(int h, int m) : hora(h), minuto(m) {} ;
-    Horario(const Horario &h)
-    {
-      hora = h.hora;
-      minuto = h.minuto;
-    }
 };
 
 #endif // HORARIO_H

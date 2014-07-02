@@ -1,26 +1,25 @@
-// BOUNDARY - fronteira
 #ifndef GERENCIASALA_H
 #define GERENCIASALA_H
 
-#include <iostream>
 #include "../headers/sala.h"
 #include "../headers/consts.h"
 
-class GerenciaSala{
+class GerenciaSala
+{
   private:
     int qtdSalas;
     Sala *salas[MAX_SALAS];
 
   public:
-    GerenciaSala();
-    /* ------ CRUD ------- */            
-    void criarSala(); // retorna true se criou com sucesso
-    void removerSala(); // retorna true se removeu com sucesso
+    GerenciaSala(); // construtor
+    /* ------ CRUD ------- */
+    void criarSala();
+    void removerSala();
     void buscarSala();
-    Sala* buscarSala(int _id);  
-    void editarSala(); 
+    Sala* buscarSala(int _id);
+    void editarSala();
     /* ------------------- */
-    void escreverSala(); // funcao para escrever no arquivo salas.data as salas cadastradas
+    void escreverSala(); // metodo para escrever no arquivo salas.data as salas cadastradas
     void listarSalas();
 };
 
