@@ -91,7 +91,7 @@ void gerenciadorDeSalas(GerenciaSala &g)
         {
           g.listarSalas();
         }
-
+  
         catch(char const* s)
         {
           cout << s << endl;
